@@ -225,6 +225,7 @@ td{padding:8px;border-bottom:1px solid #161b22;color:var(--su);}
         <div><label class="fl">緯度</label><input id="cfgLat" type="number" step="0.0001"></div>
         <div><label class="fl">經度</label><input id="cfgLng" type="number" step="0.0001"></div>
         <div style="grid-column:span 2"><label class="fl">CWA API Key（opendata.cwa.gov.tw 免費申請）</label><input id="cfgCwaKey" placeholder="CWA-XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"></div>
+<div style="grid-column:span 2"><label class="fl">🤖 Anthropic API Key（必填，AI 分析需要）</label><input id="cfgAnthropicKey" placeholder="sk-ant-api03-..."></div>
       </div>
       <div class="ar">
         <button class="ab" style="background:var(--bl)" onclick="doRefresh()">🤖 重新抓取並 AI 分析</button>
@@ -331,7 +332,7 @@ const emptySlot=()=>({
 });
 
 let S={
-  lat:"24.9035",lng:"120.9026",cwaKey:"",
+  lat:"24.9035",lng:"120.9026",cwaKey:"",anthropicKey:"",
   dayData:{},
   aiResult:null,  // from Claude API
   aiStatus:"idle",// idle/loading/ok/error
@@ -588,7 +589,7 @@ async function runAI(){
 
     const res=await fetch("https://api.anthropic.com/v1/messages",{
       method:"POST",
-      headers:{"Content-Type":"application/json"},
+      headers:{"Content-Type":"application/json","x-api-key":S.anthropicKey,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},
       body:JSON.stringify({
         model:"claude-sonnet-4-20250514",
         max_tokens:2000,
@@ -977,11 +978,11 @@ function showTab(id,btn){
 }
 function syncCfg(){
   const la=document.getElementById("cfgLat"),lo=document.getElementById("cfgLng"),ck=document.getElementById("cfgCwaKey");
-  if(la?.value)S.lat=la.value;if(lo?.value)S.lng=lo.value;if(ck?.value)S.cwaKey=ck.value;saveS();
+  const ak=document.getElementById("cfgAnthropicKey");if(la?.value)S.lat=la.value;if(lo?.value)S.lng=lo.value;if(ck?.value)S.cwaKey=ck.value;if(ak?.value)S.anthropicKey=ak.value;saveS();
 }
 function syncCfgToUI(){
   const la=document.getElementById("cfgLat"),lo=document.getElementById("cfgLng"),ck=document.getElementById("cfgCwaKey");
-  if(la)la.value=S.lat;if(lo)lo.value=S.lng;if(ck)ck.value=S.cwaKey;
+  const akui=document.getElementById("cfgAnthropicKey");if(la)la.value=S.lat;if(lo)lo.value=S.lng;if(ck)ck.value=S.cwaKey;if(akui)akui.value=S.anthropicKey||"";
 }
 
 // ════════════════════════════════════════════════════════
