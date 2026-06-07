@@ -478,7 +478,7 @@ async function fetchRadarUrl(){
   S.radarUrl=url;
   // 嘗試透過 CORS proxy 取得 base64
   try{
-    const proxy=`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+    const proxy=`https://corsproxy.io/?${encodeURIComponent(url)}`;
     const res=await fetch(proxy,{signal:AbortSignal.timeout(8000)});
     if(!res.ok)throw new Error("proxy fail");
     const blob=await res.blob();
@@ -501,7 +501,7 @@ async function fetchSatUrl(){
   const url=`https://himawari8.nict.go.jp/img/D531106/2d/550/${p(utc.getFullYear(),4)}/${p(utc.getMonth()+1,2)}/${p(utc.getDate(),2)}/${p(utc.getHours(),2)}${p(m,2)}00_0_0.png`;
   S.satUrl=url;
   try{
-    const proxy=`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+    const proxy=`https://corsproxy.io/?${encodeURIComponent(url)}`;
     const res=await fetch(proxy,{signal:AbortSignal.timeout(8000)});
     if(!res.ok)throw new Error("proxy fail");
     const blob=await res.blob();
@@ -597,7 +597,7 @@ async function runAI(){
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify(geminiBody)
     });
-    if(!res.ok){if(res.status===429)throw new Error('API 請求過於頻繁(429)，請稍後再試');throw new Error('API HTTP '+res.status);}
+    if(!res.ok){if(res.status===429||res.status===503)throw new Error('API 請求過於頻繁(429)，請稍後再試');throw new Error('API HTTP '+res.status);}
     const data=await res.json();
     const raw=data.candidates?.[0]?.content?.parts?.[0]?.text||"";
     const clean=raw.replace(/```json\n?|```\n?/g,"").trim();
