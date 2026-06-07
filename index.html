@@ -15,7 +15,7 @@ html,body{min-height:100%;overscroll-behavior:none;}
   --bg:#0d1117;--c1:#161b22;--c2:#1c2333;--c3:#21262d;
   --bd:#30363d;--tx:#e6edf3;--mu:#7d8590;--su:#8b949e;
   --bl:#1f6feb;--bll:#58a6ff;
-  --g:#238636;--y:#d29922;--o:#f97316;--r:#da3633;--dr:#7f1d1d;
+  --g:#238636;--y:#d29922;--o:#f97316;--r:#da3633;--dr:#7f1d1d;h
 }
 body{background:var(--bg);color:var(--tx);font-family:-apple-system,'Helvetica Neue','PingFang TC','Microsoft JhengHei',sans-serif;}
 button{font-family:inherit;cursor:pointer;border:none;border-radius:8px;font-weight:600;transition:opacity .12s;}
@@ -587,7 +587,7 @@ async function runAI(){
     }
     contentBlocks.push({type:"text",text:prompt});
 
-    const geminiUrl=`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${S.geminiKey}`;
+    const geminiUrl=`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${S.geminiKey}`;
     const geminiBody={contents:[{parts:[]}]};
     if(radarB64){geminiBody.contents[0].parts.push({inline_data:{mime_type:"image/png",data:radarB64}});geminiBody.contents[0].parts.push({text:"[上圖：CWA 最新雷達回波複合圖，台灣範圍]"});}
     if(satB64){geminiBody.contents[0].parts.push({inline_data:{mime_type:"image/png",data:satB64}});geminiBody.contents[0].parts.push({text:"[上圖：Himawari 最新衛星可見光雲圖]"});}
@@ -597,7 +597,7 @@ async function runAI(){
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify(geminiBody)
     });
-    if(!res.ok) throw new Error("API HTTP "+res.status);
+    if(!res.ok){if(res.status===429)throw new Error('API 請求過於頻繁(429)，請稍後再試');throw new Error('API HTTP '+res.status);}
     const data=await res.json();
     const raw=data.candidates?.[0]?.content?.parts?.[0]?.text||"";
     const clean=raw.replace(/```json\n?|```\n?/g,"").trim();
@@ -990,7 +990,7 @@ function syncCfgToUI(){
 // ════════════════════════════════════════════════════════
 loadS();
 renderAll();
-doRefresh(); // 開機自動抓 + AI 分析
+if(!S.geminiKey||!S.lastAt||Date.now()-new Date(S.lastAt)>28*60*1000){doRefresh();}else{fetchModels().then(()=>{if(S.cwaKey)fetchCWA();renderAll();addLog('⏩ AI 快取有效，跳過重新分析');});}
 // 每 30 分鐘自動更新
 setInterval(()=>{doRefresh();addLog("🔄 30 分鐘自動更新");},30*60*1000);
 // 每分鐘刷新 NOW 顯示
