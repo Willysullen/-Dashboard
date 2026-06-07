@@ -587,7 +587,7 @@ async function runAI(){
     }
     contentBlocks.push({type:"text",text:prompt});
 
-    const geminiUrl=`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${S.geminiKey}`;
+    const geminiUrl=`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${S.geminiKey}`;
     const geminiBody={contents:[{parts:[]}]};
     if(radarB64){geminiBody.contents[0].parts.push({inline_data:{mime_type:"image/png",data:radarB64}});geminiBody.contents[0].parts.push({text:"[上圖：CWA 最新雷達回波複合圖，台灣範圍]"});}
     if(satB64){geminiBody.contents[0].parts.push({inline_data:{mime_type:"image/png",data:satB64}});geminiBody.contents[0].parts.push({text:"[上圖：Himawari 最新衛星可見光雲圖]"});}
