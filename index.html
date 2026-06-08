@@ -12,10 +12,10 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html,body{min-height:100%;overscroll-behavior:none;}
 :root{
-  --bg:#0d1117;--c1:#161b22;--c2:#1c2333;--c3:#21262d;
-  --bd:#30363d;--tx:#e6edf3;--mu:#7d8590;--su:#8b949e;
-  --bl:#1f6feb;--bll:#58a6ff;
-  --g:#238636;--y:#d29922;--o:#f97316;--r:#da3633;--dr:#7f1d1d;h
+--bg:#0d1117;--c1:#161b22;--c2:#1c2333;--c3:#21262d;
+--bd:#30363d;--tx:#e6edf3;--mu:#7d8590;--su:#8b949e;
+--bl:#1f6feb;--bll:#58a6ff;
+--g:#238636;--y:#d29922;--o:#f97316;--r:#da3633;--dr:#7f1d1d;
 }
 body{background:var(--bg);color:var(--tx);font-family:-apple-system,'Helvetica Neue','PingFang TC','Microsoft JhengHei',sans-serif;}
 button{font-family:inherit;cursor:pointer;border:none;border-radius:8px;font-weight:600;transition:opacity .12s;}
@@ -23,35 +23,22 @@ button:active{opacity:.7;}
 input,select,textarea{font-family:inherit;font-size:13px;background:var(--c1);color:var(--tx);border:1px solid var(--bd);border-radius:8px;padding:8px 10px;width:100%;outline:none;-webkit-appearance:none;}
 select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237d8590'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;padding-right:26px;}
 .hid{display:none!important;}
-
-/* HEADER */
 #hdr{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--bd);padding:10px 14px;}
 .hdr-r1{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
 .logo{font-size:16px;font-weight:800;color:var(--bll);}
 .logo-sub{font-size:10px;color:var(--mu);margin-top:1px;}
-.hdr-status{font-size:10px;color:var(--mu);text-align:right;line-height:1.7;}
 .rbtn{padding:7px 13px;background:var(--bl);color:#fff;font-size:12px;}
-
-/* DAY NAV */
 #dayNav{display:flex;gap:6px;}
 .db{flex:1;padding:7px 6px;background:var(--c2);color:var(--mu);font-size:11px;font-weight:700;border-radius:8px;border:1px solid var(--bd);text-align:center;line-height:1.4;}
 .db.on{background:var(--bl);color:#fff;border-color:var(--bl);}
 .db .risk-dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-left:4px;vertical-align:middle;}
-
-/* TABS */
 #tabs{background:var(--bg);border-bottom:1px solid var(--bd);display:flex;overflow-x:auto;scrollbar-width:none;}
 #tabs::-webkit-scrollbar{display:none;}
 .tb{padding:9px 14px;background:transparent;color:var(--mu);font-size:12px;font-weight:600;border-radius:0;border-bottom:2px solid transparent;white-space:nowrap;flex-shrink:0;}
 .tb.on{color:var(--bll);border-bottom-color:var(--bll);}
-
-/* CONTENT */
 #content{padding:14px;max-width:860px;margin:0 auto;padding-bottom:50px;}
-
-/* CARDS */
 .card{background:var(--c1);border-radius:12px;border:1px solid var(--bd);padding:14px;margin-bottom:12px;}
 .ct{font-size:10px;color:var(--mu);font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:10px;}
-
-/* AI ANALYSIS CARD */
 #aiCard{border-radius:16px;padding:0;overflow:hidden;margin-bottom:12px;border:1px solid;}
 #aiCardHeader{padding:14px 16px 10px;display:flex;justify-content:space-between;align-items:flex-start;}
 #aiCardBody{padding:0 16px 14px;}
@@ -61,7 +48,6 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
 .ai-gauge-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
 .ai-num{font-size:28px;font-weight:900;line-height:1;}
 .ai-of{font-size:9px;color:var(--mu);}
-.ai-right{}
 .ai-level{font-size:20px;font-weight:800;margin-bottom:4px;}
 .ai-conf{font-size:10px;color:var(--mu);margin-bottom:6px;}
 .ai-trend{font-size:12px;font-weight:600;}
@@ -77,19 +63,12 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
 .ai-staff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:6px;}
 .ai-staff{background:rgba(255,255,255,.04);border-radius:7px;padding:9px 10px;font-size:11px;color:var(--su);line-height:1.5;border-left:2px solid;}
 .ai-staff b{color:var(--tx);}
-
-/* AI LOADING */
 #aiLoading{padding:30px;text-align:center;}
 .ai-spin-wrap{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px;}
 .spin{display:inline-block;width:20px;height:20px;border:3px solid var(--bd);border-top-color:var(--bll);border-radius:50%;animation:spin .7s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg)}}
 .ai-load-text{font-size:13px;color:var(--mu);}
 .ai-load-steps{font-size:11px;color:var(--mu);margin-top:8px;line-height:1.9;}
-
-/* AI ERROR */
-#aiError{padding:20px;text-align:center;}
-
-/* TIMELINE */
 #tlWrap{overflow-x:auto;scrollbar-width:thin;scrollbar-color:var(--bd) transparent;padding-bottom:4px;}
 #tlWrap::-webkit-scrollbar{height:3px;}
 #tlWrap::-webkit-scrollbar-thumb{background:var(--bd);border-radius:3px;}
@@ -103,8 +82,6 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
 .ts-s{font-size:14px;font-weight:800;line-height:1;}
 .ts-r{font-size:9px;margin-top:2px;}
 .ts-mm{font-size:8px;color:var(--mu);margin-top:1px;}
-
-/* SLOT DETAIL GRID */
 .sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;}
 .sc{background:var(--c1);border-radius:12px;overflow:hidden;border:1px solid var(--bd);}
 .sc-h{padding:10px 13px;display:flex;justify-content:space-between;align-items:center;}
@@ -122,18 +99,13 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
 .sc-tags{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:7px;}
 .tag{font-size:9px;background:#0d1117;padding:3px 7px;border-radius:4px;color:var(--su);}
 .tag.a{background:rgba(31,111,235,.15);color:var(--bll);}
-
-/* SETTINGS */
+.tag.ncdr{background:rgba(88,166,255,.12);color:#79c0ff;}
 .fg{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:9px;margin-bottom:12px;}
 .fl{font-size:10px;color:var(--mu);display:block;margin-bottom:4px;font-weight:700;}
 .ssel{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px;}
 .ssel button{padding:5px 10px;font-size:11px;background:var(--c2);color:var(--mu);border:1px solid var(--bd);}
 .ssel button.on{color:#fff;}
-
-/* RADAR/SAT PREVIEW */
 .img-preview{width:100%;border-radius:8px;border:1px solid var(--bd);max-height:180px;object-fit:cover;display:block;margin-bottom:8px;}
-
-/* HISTORY */
 .hst{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:10px;}
 .hsc{padding:14px;text-align:center;}
 .hsl{font-size:10px;color:var(--mu);}
@@ -143,779 +115,592 @@ table{width:100%;border-collapse:collapse;font-size:12px;}
 th{padding:8px;color:var(--mu);font-weight:600;border-bottom:1px solid var(--bd);text-align:left;}
 td{padding:8px;border-bottom:1px solid #161b22;color:var(--su);}
 .vb{padding:3px 8px;font-size:11px;color:#fff;border-radius:5px;}
-
-/* NOTICE */
 .ntop{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px;}
 #nta{min-height:300px;line-height:1.8;resize:vertical;}
-
-/* ACTION ROW */
 .ar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
 .ab{padding:10px 16px;color:#fff;font-size:13px;}
-
-/* TOMORROW STRIP */
 .tmr-strip{display:flex;gap:8px;flex-wrap:wrap;}
 .tmr-item{flex:1;min-width:120px;background:var(--c2);border-radius:8px;padding:10px 12px;border:1px solid var(--bd);}
 .tmr-label{font-size:10px;color:var(--mu);margin-bottom:4px;}
 .tmr-text{font-size:12px;font-weight:600;line-height:1.5;}
-
-/* TOAST */
 #toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--c2);color:var(--tx);padding:9px 18px;border-radius:9px;font-size:13px;font-weight:600;border:1px solid var(--bd);opacity:0;transition:opacity .25s;pointer-events:none;z-index:999;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.4);}
 #toast.on{opacity:1;}
+/* NCDR 預警 badge */
+.ncdr-warn{display:inline-block;font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;margin-left:4px;}
+.ncdr-warn.lv0{background:rgba(46,160,67,.15);color:#2ea043;}
+.ncdr-warn.lv1{background:rgba(210,153,34,.2);color:#d29922;}
+.ncdr-warn.lv2{background:rgba(249,115,22,.25);color:#f97316;}
+.ncdr-warn.lv3{background:rgba(248,81,73,.3);color:#f85149;}
 </style>
 </head>
 <body>
-
 <div id="hdr">
-  <div class="hdr-r1">
-    <div>
-      <div class="logo">🎯 永安 Rain AI</div>
-      <div class="logo-sub" id="stLine">⚪ 啟動中...</div>
-    </div>
-    <button class="rbtn" onclick="doRefresh()">🔄 分析</button>
-  </div>
-  <div id="dayNav"></div>
+<div class="hdr-r1">
+<div>
+<div class="logo">🎯 永安 Rain AI</div>
+<div class="logo-sub" id="stLine">⚪ 啟動中...</div>
 </div>
-
+<button class="rbtn" onclick="doRefresh()">🔄 分析</button>
+</div>
+<div id="dayNav"></div>
+</div>
 <div id="tabs">
-  <button class="tb on" onclick="showTab('dash',this)">🤖 AI 分析</button>
-  <button class="tb" onclick="showTab('slots',this)">⏰ 時段</button>
-  <button class="tb" onclick="showTab('input',this)">⚙️ 設定</button>
-  <button class="tb" onclick="showTab('hist',this)">📈 歷史</button>
-  <button class="tb" onclick="showTab('notice',this)">📢 公告</button>
+<button class="tb on" onclick="showTab('dash',this)">🤖 AI 分析</button>
+<button class="tb" onclick="showTab('slots',this)">⏰ 時段</button>
+<button class="tb" onclick="showTab('input',this)">⚙️ 設定</button>
+<button class="tb" onclick="showTab('hist',this)">📈 歷史</button>
+<button class="tb" onclick="showTab('notice',this)">📢 公告</button>
 </div>
-
 <div id="content">
-
-  <!-- AI 分析 TAB -->
-  <div id="tab-dash">
-    <div id="aiCard"></div>
-
-    <div class="card">
-      <div class="ct">☁️ 各時段風險</div>
-      <div id="tlWrap"><div id="tl"></div></div>
-    </div>
-
-    <div class="card" id="tmrCard">
-      <div class="ct">📅 明後天預測</div>
-      <div class="tmr-strip" id="tmrStrip"></div>
-    </div>
-
-    <div class="ar">
-      <button class="ab" style="background:#8b5cf6" onclick="makeNotice()">📢 產生公告</button>
-      <button class="ab" style="background:#238636" onclick="saveHist()">💾 儲存記錄</button>
-      <button class="ab" style="background:#da3633" onclick="clearToday()">🗑️ 清空今天</button>
-    </div>
-
-    <div class="card">
-      <div class="ct">系統日誌</div>
-      <div id="logBox" style="font-size:10px;color:#4a5568;line-height:1.9;max-height:100px;overflow-y:auto;"></div>
-    </div>
-  </div>
-
-  <!-- 時段 TAB -->
-  <div id="tab-slots" class="hid">
-    <div class="sg" id="slotGrid"></div>
-  </div>
-
-  <!-- 設定 TAB -->
-  <div id="tab-input" class="hid">
-    <div class="card">
-      <div class="ct">📍 位置 ＆ API</div>
-      <div class="fg">
-        <div><label class="fl">緯度</label><input id="cfgLat" type="number" step="0.0001"></div>
-        <div><label class="fl">經度</label><input id="cfgLng" type="number" step="0.0001"></div>
-        <div style="grid-column:span 2"><label class="fl">CWA API Key（opendata.cwa.gov.tw 免費申請）</label><input id="cfgCwaKey" placeholder="CWA-XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"></div>
+<div id="tab-dash">
+<div id="aiCard"></div>
+<div class="card">
+<div class="ct">☁️ 各時段風險</div>
+<div id="tlWrap"><div id="tl"></div></div>
+</div>
+<div class="card" id="tmrCard">
+<div class="ct">📅 明後天預測</div>
+<div class="tmr-strip" id="tmrStrip"></div>
+</div>
+<div class="ar">
+<button class="ab" style="background:#8b5cf6" onclick="makeNotice()">📢 產生公告</button>
+<button class="ab" style="background:#238636" onclick="saveHist()">💾 儲存記錄</button>
+<button class="ab" style="background:#da3633" onclick="clearToday()">🗑️ 清空今天</button>
+</div>
+<div class="card">
+<div class="ct">系統日誌</div>
+<div id="logBox" style="font-size:10px;color:#4a5568;line-height:1.9;max-height:100px;overflow-y:auto;"></div>
+</div>
+</div>
+<div id="tab-slots" class="hid">
+<div class="sg" id="slotGrid"></div>
+</div>
+<div id="tab-input" class="hid">
+<div class="card">
+<div class="ct">📍 位置 ＆ API</div>
+<div class="fg">
+<div><label class="fl">緯度</label><input id="cfgLat" type="number" step="0.0001"></div>
+<div><label class="fl">經度</label><input id="cfgLng" type="number" step="0.0001"></div>
+<div style="grid-column:span 2"><label class="fl">CWA API Key（opendata.cwa.gov.tw 免費申請）</label><input id="cfgCwaKey" placeholder="CWA-XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"></div>
 <div style="grid-column:span 2"><label class="fl">🤖 Gemini API Key（免費，AI 分析需要）</label><input id="cfgAnthropicKey" placeholder="AIza..."></div>
-      </div>
-      <div class="ar">
-        <button class="ab" style="background:var(--bl)" onclick="doRefresh()">🤖 重新抓取並 AI 分析</button>
-      </div>
-      <div style="font-size:10px;color:#4a5568;line-height:1.9">
-        自動抓取：Open-Meteo 4 個模型（ECMWF・GFS・JMA・最佳模型）<br>
-        CWA Key 填入後加碼抓：新屋/觀音/楊梅/湖口雨量站・新屋鄉鎮預報<br>
-        同時嘗試抓取 CWA 雷達圖 + 衛星雲圖傳給 AI 分析<br>
-        每 30 分鐘自動重新分析
-      </div>
-    </div>
-
-    <!-- 雷達/衛星預覽 -->
-    <div class="card">
-      <div class="ct">📡 雷達 ＆ 衛星預覽</div>
-      <div style="font-size:11px;color:var(--mu);margin-bottom:8px;">以下圖片會嘗試傳給 AI 一起分析</div>
-      <div id="radarPreview"></div>
-      <div id="satPreview"></div>
-    </div>
-
-    <div class="card">
-      <div class="ct">📝 現場觀察手動補正（雷達・現場）</div>
-      <div class="ssel" id="slotSelBtns"></div>
-      <div id="slotForm"></div>
-    </div>
-  </div>
-
-  <!-- 歷史 TAB -->
-  <div id="tab-hist" class="hid">
-    <div class="hst" id="histStats"></div>
-    <div class="card" style="overflow-x:auto">
-      <table><thead><tr><th>日期</th><th>分數</th><th>狀態</th><th>天氣</th><th>準確</th></tr></thead>
-      <tbody id="histTb"></tbody></table>
-    </div>
-  </div>
-
-  <!-- 公告 TAB -->
-  <div id="tab-notice" class="hid">
-    <div class="card">
-      <div class="ntop">
-        <span style="font-size:12px;color:var(--mu)">點複製 → 貼 Line 群組</span>
-        <div style="display:flex;gap:8px">
-          <button id="cpBtn" style="padding:8px 14px;background:var(--bl);color:#fff;font-size:12px;" onclick="copyNotice()">📋 複製</button>
-          <button style="padding:8px 12px;background:var(--c2);color:var(--mu);font-size:12px;" onclick="makeNotice()">🔄</button>
-        </div>
-      </div>
-      <div id="noticeEmpty" style="text-align:center;padding:36px;color:var(--mu)">
-        <div style="font-size:36px;margin-bottom:12px">📋</div>
-        <button style="padding:11px 20px;background:#8b5cf6;color:#fff;font-size:13px;" onclick="makeNotice()">📢 產生今日員工公告</button>
-      </div>
-      <textarea id="nta" class="hid" readonly></textarea>
-    </div>
-  </div>
-
+</div>
+<div class="ar">
+<button class="ab" style="background:var(--bl)" onclick="doRefresh()">🤖 重新抓取並 AI 分析</button>
+</div>
+<div style="font-size:10px;color:#4a5568;line-height:1.9">
+自動抓取：Open-Meteo 4 個模型（ECMWF・GFS・JMA・最佳模型）<br>
+NCDR 即時：新屋/觀音/楊梅多站雨量 + 短延時鄉鎮預警（免費，無需 Key）<br>
+CWA Key 填入後加碼抓：新屋鄉鎮預報（PoP12h）<br>
+NCDR 雷達合成圖直接傳給 AI 分析（無 CORS 問題）<br>
+每 30 分鐘自動重新分析
+</div>
+</div>
+<div class="card">
+<div class="ct">📡 雷達 ＆ 衛星預覽</div>
+<div style="font-size:11px;color:var(--mu);margin-bottom:8px;">以下圖片會嘗試傳給 AI 一起分析</div>
+<div id="radarPreview"></div>
+<div id="satPreview"></div>
+</div>
+<div class="card">
+<div class="ct">📝 現場觀察手動補正（雷達・現場）</div>
+<div class="ssel" id="slotSelBtns"></div>
+<div id="slotForm"></div>
+</div>
+</div>
+<div id="tab-hist" class="hid">
+<div class="hst" id="histStats"></div>
+<div class="card" style="overflow-x:auto">
+<table><thead><tr><th>日期</th><th>分數</th><th>狀態</th><th>天氣</th><th>準確</th></tr></thead>
+<tbody id="histTb"></tbody></table>
+</div>
+</div>
+<div id="tab-notice" class="hid">
+<div class="card">
+<div class="ntop">
+<span style="font-size:12px;color:var(--mu)">點複製 → 貼 Line 群組</span>
+<div style="display:flex;gap:8px">
+<button id="cpBtn" style="padding:8px 14px;background:var(--bl);color:#fff;font-size:12px;" onclick="copyNotice()">📋 複製</button>
+<button style="padding:8px 12px;background:var(--c2);color:var(--mu);font-size:12px;" onclick="makeNotice()">🔄</button>
+</div>
+</div>
+<div id="noticeEmpty" style="text-align:center;padding:36px;color:var(--mu)">
+<div style="font-size:36px;margin-bottom:12px">📋</div>
+<button style="padding:11px 20px;background:#8b5cf6;color:#fff;font-size:13px;" onclick="makeNotice()">📢 產生今日員工公告</button>
+</div>
+<textarea id="nta" class="hid" readonly></textarea>
+</div>
+</div>
 </div>
 <div id="toast"></div>
-
 <script>
-// ════════════════════════════════════════════════════════
-// CONSTANTS
-// ════════════════════════════════════════════════════════
 const SLOTS=["09:30","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","18:30"];
 const LS="yongan_v6";
 
-// ── risk color ────────────────────────────────────────
 const rk=n=>n<=29?{l:"正常",c:"#2ea043",bg:"#0d2818",bc:"#238636"}:
-             n<=49?{l:"觀察",c:"#d29922",bg:"#271d00",bc:"#9e6a03"}:
-             n<=69?{l:"準備雨天",c:"#f97316",bg:"#2a1500",bc:"#7c2d12"}:
-             n<=84?{l:"高風險",c:"#f85149",bg:"#2d0f0e",bc:"#da3633"}:
-                   {l:"暫停/延後",c:"#ff6b6b",bg:"#1a0505",bc:"#7f1d1d"};
+n<=49?{l:"觀察",c:"#d29922",bg:"#271d00",bc:"#9e6a03"}:
+n<=69?{l:"準備雨天",c:"#f97316",bg:"#2a1500",bc:"#7c2d12"}:
+n<=84?{l:"高風險",c:"#f85149",bg:"#2d0f0e",bc:"#da3633"}:
+{l:"暫停/延後",c:"#ff6b6b",bg:"#1a0505",bc:"#7f1d1d"};
 
-// ── score calc ────────────────────────────────────────
-const calcRadar=(i,d,m)=>{
-  const b=[0,20,40,60,80,100][Math.min(parseInt(i)||0,5)];
-  const v=parseFloat(d)||999;
-  return Math.min(b+(v<=5?20:v<=10?15:v<=20?10:v<=40?5:0)+(m==="是"?15:m==="不確定"?5:0),100);
-};
+const calcRadar=(i,d,m)=>{const b=[0,20,40,60,80,100][Math.min(parseInt(i)||0,5)];const v=parseFloat(d)||999;return Math.min(b+(v<=5?20:v<=10?15:v<=20?10:v<=40?5:0)+(m==="是"?15:m==="不確定"?5:0),100);};
 const calcSta=a=>{const mx=Math.max(...a.map(v=>parseFloat(v)||0));return mx===0?0:mx<=1?30:mx<=3?55:mx<=8?75:95;};
 const calcMdl=(p,r)=>{const rs=(v=>v===0?0:v<=1?30:v<=3?50:v<=8?75:95)(parseFloat(r)||0);return(parseFloat(p)||0)*.7+rs*.3;};
 const calcEc=r=>{const v=parseFloat(r)||0;return v===0?0:v<=1?25:v<=3?45:v<=8?70:90;};
 const calcSite=(w,g)=>({無雨:0,毛毛雨:25,小雨:45,中雨:70,大雨:95}[w]??0)*.5+({乾:0,微濕:30,濕:65,積水:90}[g]??0)*.5;
 function calcAll(s){
-  const r=calcRadar(s.radarInt,s.radarDist,s.radarDir);
-  const st=calcSta([s.rainXinwu,s.rainGuanyin,s.rainYangmei,s.rainHukou]);
-  const cw=calcMdl(s.cwaProb,s.cwaRain);
-  const om=calcMdl(s.omProb,s.omRain);
-  const ec=calcEc(s.ecRain);
-  const si=calcSite(s.siteWeather,s.siteGround);
-  return{total:Math.min(Math.max(Math.round(r*.35+st*.20+cw*.15+om*.15+ec*.10+si*.05),0),100),r,st,cw,om,ec,si};
+const r=calcRadar(s.radarInt,s.radarDist,s.radarDir);
+const st=calcSta([s.rainXinwu,s.rainGuanyin,s.rainYangmei,s.rainHukou,s.ncdrRain1||"0"]);
+const cw=calcMdl(s.cwaProb,s.cwaRain);
+const om=calcMdl(s.omProb,s.omRain);
+const ec=calcEc(s.ecRain);
+const si=calcSite(s.siteWeather,s.siteGround);
+return{total:Math.min(Math.max(Math.round(r*.35+st*.20+cw*.15+om*.15+ec*.10+si*.05),0),100),r,st,cw,om,ec,si};
 }
 
 const wCode=c=>c<=3||c===45||c===48?"無雨":c<=55?"毛毛雨":c<=63||c===80?"小雨":c<=65||c===81?"中雨":"大雨";
 const gState=r=>r<=0?"乾":r<=0.5?"微濕":r<=3?"濕":"積水";
 
-// ════════════════════════════════════════════════════════
-// STATE
-// ════════════════════════════════════════════════════════
 const emptySlot=()=>({
-  cwaProb:"",cwaRain:"",omProb:"",omRain:"",ecRain:"",gfsRain:"",jmaRain:"",
-  radarDist:"",radarInt:"",radarDir:"不確定",
-  rainXinwu:"",rainGuanyin:"",rainYangmei:"",rainHukou:"",
-  siteWeather:"無雨",siteGround:"乾",canRun:"可",remark:"",
-  omAuto:false,ecAuto:false,gfsAuto:false,jmaAuto:false,cwaAuto:false,
+cwaProb:"",cwaRain:"",omProb:"",omRain:"",ecRain:"",gfsRain:"",jmaRain:"",
+radarDist:"",radarInt:"",radarDir:"不確定",
+rainXinwu:"",rainGuanyin:"",rainYangmei:"",rainHukou:"",
+ncdrRain1:"",ncdrRain2:"",ncdrWarnLv:0,
+siteWeather:"無雨",siteGround:"乾",canRun:"可",remark:"",
+omAuto:false,ecAuto:false,gfsAuto:false,jmaAuto:false,cwaAuto:false,ncdrAuto:false,
 });
 
 let S={
-  lat:"24.9035",lng:"120.9026",cwaKey:"",geminiKey:"",
-  dayData:{},
-  aiResult:null,  // from Claude API
-  aiStatus:"idle",// idle/loading/ok/error
-  aiSteps:[],     // loading step descriptions
-  radarUrl:null,  // latest radar image URL
-  satUrl:null,    // latest satellite URL
-  omSt:"idle",cwaSt:"idle",lastAt:null,
-  selDay:0,selSlot:SLOTS[0],
-  history:[],logs:[],
+lat:"24.9035",lng:"120.9026",cwaKey:"",geminiKey:"",
+dayData:{},
+aiResult:null,aiStatus:"idle",aiSteps:[],
+radarUrl:null,satUrl:null,ncdrRadarUrl:null,
+ncdrWarnLv:0,ncdrCityWarn:0,
+omSt:"idle",cwaSt:"idle",ncdrSt:"idle",lastAt:null,
+selDay:0,selSlot:SLOTS[0],
+history:[],logs:[],
 };
 
 function dateKey(off=0){const d=new Date();d.setDate(d.getDate()+off);return d.toISOString().split("T")[0];}
 function dayLabel(d){return d===0?"今天":d===1?"明天":"後天";}
 function dayDate(d){const dt=new Date();dt.setDate(dt.getDate()+d);return`${dt.getMonth()+1}/${dt.getDate()}`;}
 function curKey(){return dateKey(S.selDay);}
-function getSlot(dk,slot){
-  if(!S.dayData[dk])S.dayData[dk]={};
-  if(!S.dayData[dk][slot])S.dayData[dk][slot]=emptySlot();
-  return S.dayData[dk][slot];
-}
-function setSlot(dk,slot,u){
-  if(!S.dayData[dk])S.dayData[dk]={};
-  if(!S.dayData[dk][slot])S.dayData[dk][slot]=emptySlot();
-  Object.assign(S.dayData[dk][slot],u);
-}
-function dayAvg(dk){
-  const sc=SLOTS.map(s=>calcAll(getSlot(dk,s)).total);
-  return Math.round(sc.reduce((a,b)=>a+b,0)/sc.length);
-}
-function curSlot(){
-  const now=new Date(),m=now.getHours()*60+now.getMinutes();
-  return SLOTS.reduce((best,s)=>{
-    const[h,mn]=s.split(":").map(Number);
-    return Math.abs(h*60+mn-m)<Math.abs(best.split(":").map(Number).reduce((a,b,i)=>i===0?a*60:a+b)-m)?s:best;
-  });
-}
+function getSlot(dk,slot){if(!S.dayData[dk])S.dayData[dk]={};if(!S.dayData[dk][slot])S.dayData[dk][slot]=emptySlot();return S.dayData[dk][slot];}
+function setSlot(dk,slot,u){if(!S.dayData[dk])S.dayData[dk]={};if(!S.dayData[dk][slot])S.dayData[dk][slot]=emptySlot();Object.assign(S.dayData[dk][slot],u);}
+function dayAvg(dk){const sc=SLOTS.map(s=>calcAll(getSlot(dk,s)).total);return Math.round(sc.reduce((a,b)=>a+b,0)/sc.length);}
+function curSlot(){const now=new Date(),m=now.getHours()*60+now.getMinutes();return SLOTS.reduce((best,s)=>{const[h,mn]=s.split(":").map(Number);return Math.abs(h*60+mn-m)<Math.abs(best.split(":").map(Number).reduce((a,b,i)=>i===0?a*60:a+b)-m)?s:best;});}
 
-// ════════════════════════════════════════════════════════
-// STORAGE
-// ════════════════════════════════════════════════════════
 function saveS(){try{localStorage.setItem(LS,JSON.stringify(S));}catch(e){}}
 function loadS(){try{const d=localStorage.getItem(LS);if(d)Object.assign(S,JSON.parse(d));}catch(e){}}
 
-// ════════════════════════════════════════════════════════
-// FETCH — WEATHER MODELS
-// ════════════════════════════════════════════════════════
+// ── WEATHER MODELS ──
 const MODELS=[
-  {key:"om",m:"best_match",rp:"omProb",rr:"omRain",auto:"omAuto"},
-  {key:"ec",m:"ecmwf_ifs025",rp:"",rr:"ecRain",auto:"ecAuto"},
-  {key:"gfs",m:"gfs_seamless",rp:"",rr:"gfsRain",auto:"gfsAuto"},
-  {key:"jma",m:"jma_seamless",rp:"",rr:"jmaRain",auto:"jmaAuto"},
+{key:"om",m:"best_match",rp:"omProb",rr:"omRain",auto:"omAuto"},
+{key:"ec",m:"ecmwf_ifs025",rp:"",rr:"ecRain",auto:"ecAuto"},
+{key:"gfs",m:"gfs_seamless",rp:"",rr:"gfsRain",auto:"gfsAuto"},
+{key:"jma",m:"jma_seamless",rp:"",rr:"jmaRain",auto:"jmaAuto"},
 ];
-
 async function fetchModels(){
-  S.omSt="loading"; updateHeader();
-  aiStep("🌐 抓取 4 個數值天氣模型（ECMWF・GFS・JMA・最佳模型）...");
-  const results=await Promise.allSettled(MODELS.map(m=>
-    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${S.lat}&longitude=${S.lng}&hourly=precipitation_probability,precipitation,weather_code&models=${m.m}&timezone=Asia%2FTaipei&forecast_days=3`)
-    .then(r=>r.ok?r.json():Promise.reject(r.status))
-  ));
-  let ok=0;
-  MODELS.forEach((mdef,i)=>{
-    const res=results[i];
-    if(res.status!=="fulfilled"){addLog(`⚠️ ${mdef.key} 失敗`);return;}
-    ok++;
-    const d=res.value;
-    const times=d.hourly.time,probs=d.hourly.precipitation_probability||[],rains=d.hourly.precipitation||[],codes=d.hourly.weather_code||[];
-    for(let day=0;day<3;day++){
-      const dk=dateKey(day);
-      const hmap={"09:30":[9,10],"10:00":[10,null],"11:00":[11,null],"12:00":[12,null],"13:00":[13,null],"14:00":[14,null],"15:00":[15,null],"16:00":[16,null],"17:00":[17,null],"18:00":[18,null],"18:30":[18,19]};
-      SLOTS.forEach(slot=>{
-        const[h1,h2]=hmap[slot];
-        const at=h=>{const k=`${dk}T${String(h).padStart(2,"0")}:00`;const i=times.indexOf(k);return i>=0?i:null;};
-        const gv=(arr,h)=>{const i=at(h);return i!==null?(arr[i]??null):null;};
-        const iv=(arr,h1,h2)=>{const a=gv(arr,h1),b=gv(arr,h2);return a===null&&b===null?null:a===null?b:b===null?a:(a+b)/2;};
-        const p=h2!==null?iv(probs,h1,h2):gv(probs,h1);
-        const r=h2!==null?iv(rains,h1,h2):gv(rains,h1);
-        const c=gv(codes,h1);
-        const u={[mdef.auto]:true};
-        if(r!==null)u[mdef.rr]=r.toFixed(2);
-        if(mdef.rp&&p!==null)u[mdef.rp]=String(Math.round(p));
-        if(mdef.key==="om"&&day===0){
-          if(c!==null)u.siteWeather=wCode(c);
-          if(r!==null){u.siteGround=gState(r);u.canRun=r<=0?"可":r<=0.5?"勉強可":r<=3?"不建議":"暫停";}
-        }
-        setSlot(dk,slot,u);
-      });
-    }
-  });
-  S.omSt=ok>0?"ok":"error";
-  addLog(`✅ 天氣模型 ${ok}/4 成功`);
+S.omSt="loading";updateHeader();
+aiStep("🌐 抓取 4 個數值天氣模型（ECMWF・GFS・JMA・最佳模型）...");
+const results=await Promise.allSettled(MODELS.map(m=>fetch(`https://api.open-meteo.com/v1/forecast?latitude=${S.lat}&longitude=${S.lng}&hourly=precipitation_probability,precipitation,weather_code&models=${m.m}&timezone=Asia%2FTaipei&forecast_days=3`).then(r=>r.ok?r.json():Promise.reject(r.status))));
+let ok=0;
+MODELS.forEach((mdef,i)=>{
+const res=results[i];if(res.status!=="fulfilled"){addLog(`⚠️ ${mdef.key} 失敗`);return;}ok++;
+const d=res.value;const times=d.hourly.time,probs=d.hourly.precipitation_probability||[],rains=d.hourly.precipitation||[],codes=d.hourly.weather_code||[];
+for(let day=0;day<3;day++){const dk=dateKey(day);
+const hmap={"09:30":[9,10],"10:00":[10,null],"11:00":[11,null],"12:00":[12,null],"13:00":[13,null],"14:00":[14,null],"15:00":[15,null],"16:00":[16,null],"17:00":[17,null],"18:00":[18,null],"18:30":[18,19]};
+SLOTS.forEach(slot=>{
+const[h1,h2]=hmap[slot];
+const at=h=>{const k=`${dk}T${String(h).padStart(2,"0")}:00`;const i=times.indexOf(k);return i>=0?i:null;};
+const gv=(arr,h)=>{const i=at(h);return i!==null?(arr[i]??null):null;};
+const iv=(arr,h1,h2)=>{const a=gv(arr,h1),b=gv(arr,h2);return a===null&&b===null?null:a===null?b:b===null?a:(a+b)/2;};
+const p=h2!==null?iv(probs,h1,h2):gv(probs,h1);
+const r=h2!==null?iv(rains,h1,h2):gv(rains,h1);
+const c=gv(codes,h1);
+const u={[mdef.auto]:true};
+if(r!==null)u[mdef.rr]=r.toFixed(2);
+if(mdef.rp&&p!==null)u[mdef.rp]=String(Math.round(p));
+if(mdef.key==="om"&&day===0){if(c!==null)u.siteWeather=wCode(c);if(r!==null){u.siteGround=gState(r);u.canRun=r<=0?"可":r<=0.5?"勉強可":r<=3?"不建議":"暫停";}}
+setSlot(dk,slot,u);
+});
+}
+});
+S.omSt=ok>0?"ok":"error";
+addLog(`✅ 天氣模型 ${ok}/4 成功`);
 }
 
-// ── CWA ──────────────────────────────────────────────
+// ── CWA ──
 async function fetchCWA(){
-  if(!S.cwaKey)return;
-  S.cwaSt="loading"; updateHeader();
-  aiStep("🌧 抓取 CWA 雨量站 + 新屋鄉鎮預報...");
-  try{
-    const r1=await fetch(`https://opendata.cwa.gov.tw/api/v1/rest/datastore/O-A0002-001?Authorization=${S.cwaKey}&StationId=C0Z100,C0Z110,C0Z090,C0Z080&format=JSON`);
-    if(r1.ok){
-      const d1=await r1.json();
-      const rv={};
-      (d1?.records?.Station||[]).forEach(st=>{const r=st?.RainfallElement?.Now?.Precipitation;if(r!=null)rv[st.StationId]=String(r);});
-      for(let day=0;day<3;day++){
-        const dk=dateKey(day);
-        SLOTS.forEach(slot=>{
-          const u={cwaAuto:true};
-          if(rv["C0Z100"])u.rainXinwu=rv["C0Z100"];
-          if(rv["C0Z110"])u.rainGuanyin=rv["C0Z110"];
-          if(rv["C0Z090"])u.rainYangmei=rv["C0Z090"];
-          if(rv["C0Z080"])u.rainHukou=rv["C0Z080"];
-          setSlot(dk,slot,u);
-        });
-      }
-      addLog(`✅ CWA 雨量站：新屋${rv["C0Z100"]??"-"} 觀音${rv["C0Z110"]??"-"} 楊梅${rv["C0Z090"]??"-"}`);
-    }
-    // 鄉鎮預報
-    const r2=await fetch(`https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-D0047-089?Authorization=${S.cwaKey}&LocationName=%E6%96%B0%E5%B1%8B%E5%8D%80&format=JSON`);
-    if(r2.ok){
-      const d2=await r2.json();
-      const loc=d2?.records?.locations?.[0]?.location?.[0];
-      const probEl=loc?.weatherElement?.find(e=>e.elementName==="PoP12h");
-      if(probEl){
-        probEl.elementValue?.forEach((ev,i)=>{
-          const dayOff=Math.floor(i/2);if(dayOff>2)return;
-          const dk=dateKey(dayOff);
-          SLOTS.forEach(slot=>setSlot(dk,slot,{cwaProb:ev.value,cwaAuto:true}));
-        });
-        addLog("✅ CWA 新屋鄉鎮預報載入");
-      }
-    }
-    S.cwaSt="ok";
-  }catch(e){S.cwaSt="error";addLog("❌ CWA："+e.message);}
+if(!S.cwaKey)return;
+S.cwaSt="loading";updateHeader();
+aiStep("🌧 抓取 CWA 新屋鄉鎮預報...");
+try{
+const r2=await fetch(`https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-D0047-089?Authorization=${S.cwaKey}&LocationName=%E6%96%B0%E5%B1%8B%E5%8D%80&format=JSON`);
+if(r2.ok){
+const d2=await r2.json();const loc=d2?.records?.locations?.[0]?.location?.[0];
+const probEl=loc?.weatherElement?.find(e=>e.elementName==="PoP12h");
+if(probEl){probEl.elementValue?.forEach((ev,i)=>{const dayOff=Math.floor(i/2);if(dayOff>2)return;const dk=dateKey(dayOff);SLOTS.forEach(slot=>setSlot(dk,slot,{cwaProb:ev.value,cwaAuto:true}));});addLog("✅ CWA 新屋鄉鎮預報載入");}
+}
+S.cwaSt="ok";
+}catch(e){S.cwaSt="error";addLog("❌ CWA："+e.message);}
 }
 
-// ── RADAR IMAGE ───────────────────────────────────────
+// ── NCDR（免費、無需 Key）──
+async function fetchNCDR(){
+S.ncdrSt="loading";updateHeader();
+aiStep("📡 NCDR 抓取即時雨量 + 短延時預警...");
+try{
+// 1. 取最新雷達時間 → 建構圖片 URL
+const timeText=await fetch("https://watch.ncdr.nat.gov.tw/php/list_realtime_date_csv.php?v=CHART_RADAR_10MIN",{signal:AbortSignal.timeout(8000)}).then(r=>r.text());
+const lt=timeText.split(",")[1]?.trim();// e.g. "202506071630"
+if(lt&&lt.length===12){
+const y=lt.substring(0,4),mo=lt.substring(4,6),d=lt.substring(6,8);
+S.ncdrRadarUrl=`https://watch.ncdr.nat.gov.tw/00_Wxmap/7F16_NCDRQPN/${y}${mo}/${y}${mo}${d}/hybridR_060_${lt}.png`;
+S.radarUrl=S.ncdrRadarUrl;// 覆蓋舊的 CWA 雷達 URL
+addLog(`✅ NCDR 雷達圖時間：${lt}`);
+}
+
+// 2. 即時多站雨量（新屋/觀音/楊梅）
+const rgText=await fetch("https://watch.ncdr.nat.gov.tw/wh/jn_raingauge_list",{signal:AbortSignal.timeout(8000)}).then(r=>r.text());
+const rgLines=rgText.split("\n");
+const getStation=id=>{
+const line=rgLines.find(l=>l.includes(`"${id}"`));
+if(!line)return null;
+try{const d=JSON.parse(line.replace(/,$/,""));return{rain10m:d[6],rain1h:d[7],rain3h:d[8]};}catch(e){return null;}
+};
+const xinwu=getStation("467050");   // 新屋
+const guanyin=getStation("C2C590"); // 觀音
+const yangmei=getStation("C0C660"); // 楊梅
+const nongGai=getStation("72C440"); // 桃園農改（新屋）
+const dk0=dateKey(0);
+SLOTS.forEach(slot=>{
+const u={ncdrAuto:true};
+if(xinwu)u.rainXinwu=String(xinwu.rain10m??0);
+if(guanyin)u.rainGuanyin=String(guanyin.rain10m??0);
+if(yangmei)u.rainYangmei=String(yangmei.rain10m??0);
+if(nongGai)u.ncdrRain1=String(nongGai.rain10m??0);
+setSlot(dk0,slot,u);
+});
+const xv=xinwu?.rain10m??"-",gv=guanyin?.rain10m??"-",yv=yangmei?.rain10m??"-";
+addLog(`✅ NCDR 雨量：新屋${xv}mm 觀音${gv}mm 楊梅${yv}mm`);
+
+// 3. 短延時鄉鎮預警（新屋未來 120 分鐘，每 10 分鐘一步）
+const nowcastText=await fetch("https://watch.ncdr.nat.gov.tw/wh/dv_ncdrnowcast_town?",{signal:AbortSignal.timeout(8000)}).then(r=>r.text());
+const getLevel=townId=>{const line=nowcastText.split("\n").find(l=>l.startsWith(townId+","));return line?parseInt(line.split(",")[1])||0:0;};
+const xinwuLv=getLevel("6801100");   // 新屋區
+const guanyinLv=getLevel("6801200"); // 觀音區
+const luzhiLv=getLevel("6800500");   // 蘆竹區（緊鄰）
+S.ncdrWarnLv=Math.max(xinwuLv,guanyinLv,luzhiLv);
+SLOTS.forEach(slot=>setSlot(dk0,slot,{ncdrWarnLv:S.ncdrWarnLv}));
+if(S.ncdrWarnLv>0)addLog(`⚠️ NCDR 預警：新屋Lv${xinwuLv} 觀音Lv${guanyinLv} 蘆竹Lv${luzhiLv}`);
+else addLog("✅ NCDR 短延時預警：新屋/觀音/蘆竹 無預警");
+
+// 4. 縣市豪大雨警戒
+const extremeText=await fetch("https://watch.ncdr.nat.gov.tw/php/list_extreme_rain_city_csv?0",{signal:AbortSignal.timeout(8000)}).then(r=>r.text());
+const taoyuanLine=extremeText.split("\n").find(l=>l.includes(",68,"));
+S.ncdrCityWarn=taoyuanLine?parseInt(taoyuanLine.split(",")[2])||0:0;
+if(S.ncdrCityWarn>0)addLog(`🚨 桃園市豪雨特報等級 ${S.ncdrCityWarn}`);
+
+S.ncdrSt="ok";
+}catch(e){S.ncdrSt="error";addLog("⚠️ NCDR："+e.message);}
+}
+
+// ── RADAR/SAT IMAGES ──
 async function fetchRadarUrl(){
-  const now=new Date();
-  const m=Math.floor(now.getMinutes()/10)*10;
-  const p=(v,n)=>String(v).padStart(n,"0");
-  const url=`https://www.cwa.gov.tw/Data/radar/CV1_TW_3600_${p(now.getFullYear(),4)}${p(now.getMonth()+1,2)}${p(now.getDate(),2)}${p(now.getHours(),2)}${p(m,2)}.png`;
-  S.radarUrl=url;
-  // 嘗試透過 CORS proxy 取得 base64
-  try{
-    const proxy=`https://corsproxy.io/?${encodeURIComponent(url)}`;
-    const res=await fetch(proxy,{signal:AbortSignal.timeout(8000)});
-    if(!res.ok)throw new Error("proxy fail");
-    const blob=await res.blob();
-    return await new Promise((resolve,reject)=>{
-      const fr=new FileReader();
-      fr.onloadend=()=>resolve(fr.result.split(",")[1]);
-      fr.onerror=reject;
-      fr.readAsDataURL(blob);
-    });
-  }catch(e){addLog("⚠️ 雷達圖 CORS 受阻，傳入 URL 給 AI 參考");return null;}
+// 優先用 NCDR 圖（已在 fetchNCDR 設定），這裡備援抓 CWA
+if(S.ncdrRadarUrl)return null;// NCDR 已設定，跳過
+const now=new Date();const m=Math.floor(now.getMinutes()/10)*10;
+const p=(v,n)=>String(v).padStart(n,"0");
+const url=`https://www.cwa.gov.tw/Data/radar/CV1_TW_3600_${p(now.getFullYear(),4)}${p(now.getMonth()+1,2)}${p(now.getDate(),2)}${p(now.getHours(),2)}${p(m,2)}.png`;
+S.radarUrl=url;
+try{
+const proxy=`https://corsproxy.io/?${encodeURIComponent(url)}`;
+const res=await fetch(proxy,{signal:AbortSignal.timeout(8000)});
+if(!res.ok)throw new Error("proxy fail");
+const blob=await res.blob();
+return await new Promise((resolve,reject)=>{const fr=new FileReader();fr.onloadend=()=>resolve(fr.result.split(",")[1]);fr.onerror=reject;fr.readAsDataURL(blob);});
+}catch(e){addLog("⚠️ CWA 雷達圖 CORS，使用 NCDR");return null;}
 }
-
-// ── SATELLITE IMAGE ───────────────────────────────────
 async function fetchSatUrl(){
-  const now=new Date();
-  // Himawari 是 UTC 時間
-  const utc=new Date(now.getTime()-8*3600000);
-  const m=Math.floor(utc.getMinutes()/10)*10;
-  const p=(v,n)=>String(v).padStart(n,"0");
-  const url=`https://himawari8.nict.go.jp/img/D531106/2d/550/${p(utc.getFullYear(),4)}/${p(utc.getMonth()+1,2)}/${p(utc.getDate(),2)}/${p(utc.getHours(),2)}${p(m,2)}00_0_0.png`;
-  S.satUrl=url;
-  try{
-    const proxy=`https://corsproxy.io/?${encodeURIComponent(url)}`;
-    const res=await fetch(proxy,{signal:AbortSignal.timeout(8000)});
-    if(!res.ok)throw new Error("proxy fail");
-    const blob=await res.blob();
-    return await new Promise((resolve,reject)=>{
-      const fr=new FileReader();
-      fr.onloadend=()=>resolve(fr.result.split(",")[1]);
-      fr.onerror=reject;
-      fr.readAsDataURL(blob);
-    });
-  }catch(e){addLog("⚠️ 衛星圖 CORS 受阻，傳入 URL 給 AI 參考");return null;}
+const now=new Date();const utc=new Date(now.getTime()-8*3600000);const m=Math.floor(utc.getMinutes()/10)*10;
+const p=(v,n)=>String(v).padStart(n,"0");
+const url=`https://himawari8.nict.go.jp/img/D531106/2d/550/${p(utc.getFullYear(),4)}/${p(utc.getMonth()+1,2)}/${p(utc.getDate(),2)}/${p(utc.getHours(),2)}${p(m,2)}00_0_0.png`;
+S.satUrl=url;
+try{
+const proxy=`https://corsproxy.io/?${encodeURIComponent(url)}`;
+const res=await fetch(proxy,{signal:AbortSignal.timeout(8000)});
+if(!res.ok)throw new Error("proxy fail");
+const blob=await res.blob();
+return await new Promise((resolve,reject)=>{const fr=new FileReader();fr.onloadend=()=>resolve(fr.result.split(",")[1]);fr.onerror=reject;fr.readAsDataURL(blob);});
+}catch(e){addLog("⚠️ 衛星圖 CORS 受阻，傳入 URL 給 AI 參考");return null;}
 }
 
-// ════════════════════════════════════════════════════════
-// CLAUDE AI ANALYSIS
-// ════════════════════════════════════════════════════════
-function buildPrompt(radarBase64,satBase64){
-  const dk=dateKey(0);
-  const today=new Date().toLocaleString("zh-TW",{timeZone:"Asia/Taipei",hour12:false});
-  // 整理今天各時段資料
-  const slotRows=SLOTS.map(slot=>{
-    const s=getSlot(dk,slot);
-    return `  ${slot}: OM ${s.omProb||"?"}%/${s.omRain||"?"}mm ECMWF ${s.ecRain||"?"}mm GFS ${s.gfsRain||"?"}mm JMA ${s.jmaRain||"?"}mm CWA ${s.cwaProb||"?"}%/${s.cwaRain||"?"}mm 雷達強${s.radarInt||"?"}/距${s.radarDist||"?"}km/${s.radarDir} 新屋站${s.rainXinwu||"?"}mm/h 現場:${s.siteWeather}/${s.siteGround}`;
-  }).join("\n");
-  // 明後天摘要
-  const tmrAvg=dayAvg(dateKey(1)),daAvg=dayAvg(dateKey(2));
-  const tmrSum=SLOTS.map(s=>{const d=getSlot(dateKey(1),s);return`${s}:${d.omRain||0}mm`;}).join(" ");
-  const daSum=SLOTS.map(s=>{const d=getSlot(dateKey(2),s);return`${s}:${d.omRain||0}mm`;}).join(" ");
+// ── NCDR 雷達圖 base64（直接抓，無 CORS）──
+async function fetchNcdrRadarBase64(){
+if(!S.ncdrRadarUrl)return null;
+try{
+const res=await fetch(S.ncdrRadarUrl,{signal:AbortSignal.timeout(8000)});
+if(!res.ok)throw new Error("ncdr radar 404");
+const blob=await res.blob();
+return await new Promise((resolve,reject)=>{const fr=new FileReader();fr.onloadend=()=>resolve(fr.result.split(",")[1]);fr.onerror=reject;fr.readAsDataURL(blob);});
+}catch(e){addLog("⚠️ NCDR 雷達圖抓取失敗："+e.message);return null;}
+}
 
-  return `你是「永安 Rain AI」，桃園市新屋區永安卡丁車場的降雨風險 AI 分析師。
+// ── GEMINI AI with 429 retry ──
+async function callGeminiWithRetry(body,maxRetry=3){
+const models=["gemini-2.0-flash","gemini-1.5-flash","gemini-1.5-flash-8b"];
+let lastErr=null;
+for(let mi=0;mi<models.length;mi++){
+const model=models[mi];
+for(let attempt=0;attempt<maxRetry;attempt++){
+try{
+if(attempt>0||mi>0)aiStep(`⏳ 重試中（${model}，第${attempt+1}次）...`);
+const url=`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${S.geminiKey}`;
+const res=await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body),signal:AbortSignal.timeout(60000)});
+if(res.status===429||res.status===503){
+const waitSec=Math.pow(2,attempt+1)*(mi+1);// 2s, 4s, 8s...
+lastErr=`${model} 429，等待 ${waitSec}s`;
+addLog(`⏳ ${lastErr}`);
+await new Promise(r=>setTimeout(r,waitSec*1000));
+continue;
+}
+if(!res.ok)throw new Error(`HTTP ${res.status}`);
+return await res.json();
+}catch(e){
+lastErr=e.message;
+if(attempt<maxRetry-1)await new Promise(r=>setTimeout(r,2000));
+}
+}
+}
+throw new Error("所有模型皆失敗："+lastErr);
+}
+
+function buildPrompt(radarBase64,satBase64){
+const dk=dateKey(0);
+const today=new Date().toLocaleString("zh-TW",{timeZone:"Asia/Taipei",hour12:false});
+const ncdrWarnStr=S.ncdrWarnLv>0?`⚠️ NCDR短延時預警等級${S.ncdrWarnLv}`:"無預警";
+const cityWarnStr=S.ncdrCityWarn>0?`桃園市豪雨特報Lv${S.ncdrCityWarn}`:"無特報";
+const slotRows=SLOTS.map(slot=>{
+const s=getSlot(dk,slot);
+return ` ${slot}: OM ${s.omProb||"?"}%/${s.omRain||"?"}mm ECMWF ${s.ecRain||"?"}mm GFS ${s.gfsRain||"?"}mm JMA ${s.jmaRain||"?"}mm CWA ${s.cwaProb||"?"}% 雷達強${s.radarInt||"?"}/距${s.radarDist||"?"}km/${s.radarDir} 新屋${s.rainXinwu||"?"}mm 觀音${s.rainGuanyin||"?"}mm 楊梅${s.rainYangmei||"?"}mm NCDR預警Lv${s.ncdrWarnLv||0} 現場:${s.siteWeather}/${s.siteGround}`;
+}).join("\n");
+const tmrSum=SLOTS.map(s=>{const d=getSlot(dateKey(1),s);return`${s}:${d.omRain||0}mm`;}).join(" ");
+const daSum=SLOTS.map(s=>{const d=getSlot(dateKey(2),s);return`${s}:${d.omRain||0}mm`;}).join(" ");
+return `你是「永安 Rain AI」，桃園市新屋區永安卡丁車場的降雨風險 AI 分析師。
 
 【基本資訊】
 現在時間：${today}（台灣時間）
 地點：桃園市新屋區永安卡丁車場（24.9035°N, 120.9026°E）
 地理特性：台灣北部沿海平原，受新竹風廊影響，西南氣流盛行時午後雷陣雨頻繁
 
-【今天各時段四模型資料】（OM=Open-Meteo最佳模型, ECMWF=歐洲, GFS=美國, JMA=日本）
+【NCDR 即時狀態】${ncdrWarnStr} ｜ ${cityWarnStr}
+【今天各時段資料】（OM/ECMWF/GFS/JMA=數值模型, NCDR=國家災害防救科技中心即時預警）
 ${slotRows}
 
 【明天 OM 雨量摘要】${tmrSum}
 【後天 OM 雨量摘要】${daSum}
 
-${S.radarUrl&&!radarBase64?`【雷達圖 URL】${S.radarUrl}（圖片無法直接傳入，請依數值模型推斷雷達狀況）`:""}
-${S.satUrl&&!satBase64?`【衛星圖 URL】${S.satUrl}（圖片無法直接傳入，請依雲圖規律推斷）`:""}
+${S.ncdrRadarUrl&&!radarBase64?`【NCDR 雷達合成圖 URL】${S.ncdrRadarUrl}（最新 60 分鐘累積雨量）`:""}
+${S.satUrl&&!satBase64?`【衛星圖 URL】${S.satUrl}`:""}
 
-請根據以上所有資料（${radarBase64?"包含雷達圖":"無雷達圖"}${satBase64?"、衛星雲圖":""}），進行專業分析。
-注意：你直接決定各時段的 GO/NO GO，不是套公式，而是像有經驗的氣象分析師一樣判斷。
-
+請根據以上所有資料進行專業分析，重點關注 NCDR 即時預警和雨量站數據。
 只輸出以下 JSON，不要任何其他文字或 markdown：
-{"summary":"給店長看的2-3句話：今天天氣概況與最重要注意事項","overallRisk":0-100整數,"riskLevel":"正常/觀察/準備雨天/高風險/暫停延後","confidence":0-100整數,"trend":"⬆️上升/⬇️下降/➡️持平","keyWarning":"最重要一句警告（或空字串）","radarInsight":"雷達回波分析，說明雨帶位置移動方向","modelConsensus":"4個模型的共識與差異分析","hourly":[{"slot":"09:30","risk":整數,"canRun":"可/勉強可/不建議/暫停","note":"簡短說明原因"},...],"decisions":{"ops":"今日營業車建議","t4":"T4練習建議","cup":"永安盃建議"},"staff":["櫃台具體任務","外場具體任務","技修具體任務","店長備注"],"peakRisk":"最高風險時段說明","tomorrow":"明天一句話","dayAfter":"後天一句話"}`;
+{"summary":"給店長看的2-3句話：今天天氣概況與最重要注意事項","overallRisk":0-100整數,"riskLevel":"正常/觀察/準備雨天/高風險/暫停延後","confidence":0-100整數,"trend":"⬆️上升/⬇️下降/➡️持平","keyWarning":"最重要一句警告（或空字串）","radarInsight":"雷達回波分析","modelConsensus":"4個模型共識與NCDR預警綜合分析","hourly":[{"slot":"09:30","risk":整數,"canRun":"可/勉強可/不建議/暫停","note":"簡短說明"},...],"decisions":{"ops":"今日營業車建議","t4":"T4練習建議","cup":"永安盃建議"},"staff":["櫃台具體任務","外場具體任務","技修具體任務","店長備注"],"peakRisk":"最高風險時段說明","tomorrow":"明天一句話","dayAfter":"後天一句話"}`;
 }
 
 async function runAI(){
-  S.aiStatus="loading";
-  S.aiSteps=[];
-  renderAICard();
-
-  aiStep("📡 抓取 CWA 雷達回波圖...");
-  const radarB64=await fetchRadarUrl();
-  aiStep("🛰 抓取 Himawari 衛星雲圖...");
-  const satB64=await fetchSatUrl();
-
-  // update radar/sat preview
-  updateImgPreviews();
-
-  aiStep("🤖 Claude AI 正在分析所有資料...");
-  if(radarB64) aiStep("  ✅ 雷達圖已傳入");
-  if(satB64) aiStep("  ✅ 衛星雲圖已傳入");
-  if(!radarB64&&!satB64) aiStep("  ⚠️ 圖片無法取得，以數值模型分析");
-
-  renderAICard();
-
-  try{
-    const prompt=buildPrompt(radarB64,satB64);
-    const contentBlocks=[];
-
-    if(radarB64){
-      contentBlocks.push({type:"image",source:{type:"base64",media_type:"image/png",data:radarB64}});
-      contentBlocks.push({type:"text",text:"[上圖：CWA 最新雷達回波複合圖，台灣範圍]"});
-    }
-    if(satB64){
-      contentBlocks.push({type:"image",source:{type:"base64",media_type:"image/png",data:satB64}});
-      contentBlocks.push({type:"text",text:"[上圖：Himawari 最新衛星可見光雲圖]"});
-    }
-    contentBlocks.push({type:"text",text:prompt});
-
-    const geminiUrl=`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${S.geminiKey}`;
-    const geminiBody={contents:[{parts:[]}]};
-    if(radarB64){geminiBody.contents[0].parts.push({inline_data:{mime_type:"image/png",data:radarB64}});geminiBody.contents[0].parts.push({text:"[上圖：CWA 最新雷達回波複合圖，台灣範圍]"});}
-    if(satB64){geminiBody.contents[0].parts.push({inline_data:{mime_type:"image/png",data:satB64}});geminiBody.contents[0].parts.push({text:"[上圖：Himawari 最新衛星可見光雲圖]"});}
-    geminiBody.contents[0].parts.push({text:prompt});
-    const res=await fetch(geminiUrl,{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify(geminiBody)
-    });
-    if(!res.ok){if(res.status===429||res.status===503)throw new Error('API 請求過於頻繁(429)，請稍後再試');throw new Error('API HTTP '+res.status);}
-    const data=await res.json();
-    const raw=data.candidates?.[0]?.content?.parts?.[0]?.text||"";
-    const clean=raw.replace(/```json\n?|```\n?/g,"").trim();
-    S.aiResult=JSON.parse(clean);
-    S.aiStatus="ok";
-    S.lastAt=new Date().toISOString();
-    addLog("✅ AI 分析完成");
-  }catch(e){
-    S.aiStatus="error";
-    addLog("❌ AI 分析失敗："+e.message);
-  }
-  saveS(); renderAll();
+S.aiStatus="loading";S.aiSteps=[];renderAICard();
+aiStep("📡 抓取 NCDR 雷達合成圖...");
+const radarB64=await fetchNcdrRadarBase64();
+if(radarB64)aiStep("✅ NCDR 雷達圖已傳入");
+else{aiStep("🛰 嘗試 Himawari 衛星雲圖...");await fetchSatUrl();}
+const satB64=null;// 衛星圖只傳 URL，不傳 base64（減少 token）
+updateImgPreviews();
+aiStep("🤖 Gemini AI 正在分析...");
+renderAICard();
+try{
+const prompt=buildPrompt(radarB64,satB64);
+const geminiBody={contents:[{parts:[]}]};
+if(radarB64){geminiBody.contents[0].parts.push({inline_data:{mime_type:"image/png",data:radarB64}});geminiBody.contents[0].parts.push({text:"[上圖：NCDR 最新 60 分鐘累積雨量合成圖，台灣範圍]"});}
+geminiBody.contents[0].parts.push({text:prompt});
+const data=await callGeminiWithRetry(geminiBody);
+const raw=data.candidates?.[0]?.content?.parts?.[0]?.text||"";
+const clean=raw.replace(/```json\n?|```\n?/g,"").trim();
+S.aiResult=JSON.parse(clean);
+S.aiStatus="ok";S.lastAt=new Date().toISOString();
+addLog("✅ AI 分析完成");
+}catch(e){S.aiStatus="error";addLog("❌ AI 分析失敗："+e.message);}
+saveS();renderAll();
 }
 
-function aiStep(msg){
-  S.aiSteps.push(msg);
-  renderAICard(); // live update loading steps
-}
+function aiStep(msg){S.aiSteps.push(msg);renderAICard();}
 
-// ════════════════════════════════════════════════════════
-// MAIN FETCH FLOW
-// ════════════════════════════════════════════════════════
 async function doRefresh(){
-  syncCfg();
-  await fetchModels();
-  if(S.cwaKey) await fetchCWA();
-  await runAI(); // AI is last, after all data collected
+syncCfg();
+await fetchModels();
+await fetchNCDR();// NCDR 不需要 key，永遠執行
+if(S.cwaKey)await fetchCWA();
+await runAI();
 }
 
-// ════════════════════════════════════════════════════════
-// RENDER
-// ════════════════════════════════════════════════════════
-function renderAll(){
-  renderDayNav();
-  renderAICard();
-  renderTimeline();
-  renderTmr();
-  renderSlotGrid();
-  renderSlotForm();
-  renderHistory();
-  updateHeader();
-}
+// ── RENDER ──
+function renderAll(){renderDayNav();renderAICard();renderTimeline();renderTmr();renderSlotGrid();renderSlotForm();renderHistory();updateHeader();}
 
-// ── DAY NAV ───────────────────────────────────────────
 function renderDayNav(){
-  const el=document.getElementById("dayNav");
-  if(!el)return;
-  el.innerHTML=[0,1,2].map(d=>{
-    const dk=dateKey(d);
-    const ai=d===0&&S.aiResult?S.aiResult.overallRisk:dayAvg(dk);
-    const r=rk(ai);
-    return`<button class="db${S.selDay===d?" on":""}" onclick="selDay(${d})">
-      ${dayLabel(d)} <span class="risk-dot" style="background:${r.c}"></span><br>
-      <span style="opacity:.7;font-size:10px">${dayDate(d)}</span>
-    </button>`;
-  }).join("");
+const el=document.getElementById("dayNav");if(!el)return;
+el.innerHTML=[0,1,2].map(d=>{
+const dk=dateKey(d);const ai=d===0&&S.aiResult?S.aiResult.overallRisk:dayAvg(dk);const r=rk(ai);
+const warnBadge=d===0&&S.ncdrWarnLv>0?`<span class="ncdr-warn lv${Math.min(S.ncdrWarnLv,3)}">NCDR Lv${S.ncdrWarnLv}</span>`:"";
+return`<button class="db${S.selDay===d?" on":""}" onclick="selDay(${d})">
+${dayLabel(d)}${warnBadge}<span class="risk-dot" style="background:${r.c}"></span><br>
+<span style="opacity:.7;font-size:10px">${dayDate(d)}</span>
+</button>`;
+}).join("");
 }
 function selDay(d){S.selDay=d;renderAll();}
 
-// ── AI CARD ───────────────────────────────────────────
 function renderAICard(){
-  const el=document.getElementById("aiCard");
-  if(!el)return;
-  const isToday=S.selDay===0;
-
-  if(isToday&&S.aiStatus==="loading"){
-    el.style.background=getComputedStyle(document.documentElement).getPropertyValue("--c1");
-    el.style.borderColor=getComputedStyle(document.documentElement).getPropertyValue("--bd");
-    el.innerHTML=`<div id="aiLoading">
-      <div class="ai-spin-wrap"><div class="spin"></div><span style="font-size:13px;color:var(--bll)">AI 正在分析所有資料</span></div>
-      <div class="ai-load-steps">${S.aiSteps.map(s=>`<div>${s}</div>`).join("")}</div>
-    </div>`;
-    return;
-  }
-
-  const ai=isToday&&S.aiResult?S.aiResult:null;
-  const fallbackScore=dayAvg(curKey());
-  const score=ai?ai.overallRisk:fallbackScore;
-  const r=rk(score);
-
-  if(!ai){
-    el.style.background=r.bg; el.style.borderColor=r.bc;
-    el.innerHTML=`<div style="padding:16px">
-      <div style="font-size:10px;color:${r.c};font-weight:700;margin-bottom:6px">${isToday?"📊 數值模型分數（AI 分析等待中）":dayLabel(S.selDay)+" 預測"}</div>
-      <div style="font-size:40px;font-weight:900;color:${r.c}">${score}</div>
-      <div style="font-size:18px;font-weight:800;color:${r.c};margin-top:4px">${r.l}</div>
-      <div style="font-size:12px;color:${r.c};opacity:.7;margin-top:8px">按右上角「🔄 分析」開始 AI 預測</div>
-    </div>`;
-    return;
-  }
-
-  el.style.background=r.bg; el.style.borderColor=r.bc;
-
-  // staff
-  const staffHtml=(ai.staff||[]).map((t,i)=>{
-    const roles=["🖥 櫃台","🏁 外場","🔧 技修","👨‍💼 店長"];
-    return`<div class="ai-staff" style="border-left-color:${r.c}"><b>${roles[i]||""}：</b>${t}</div>`;
-  }).join("");
-
-  // hourly GO/NO GO
-  const goCount={}; (ai.hourly||[]).forEach(h=>{goCount[h.slot]=h;});
-
-  el.innerHTML=`
-  <div id="aiCardHeader">
-    <div>
-      <div style="font-size:10px;font-weight:700;color:${r.c};letter-spacing:.5px">🤖 AI 分析 · ${new Date(S.lastAt).toLocaleTimeString("zh-TW")}</div>
-      <div style="font-size:10px;color:${r.c};opacity:.7;margin-top:2px">信心度 ${ai.confidence}%</div>
-    </div>
-    <div style="text-align:right">
-      <span style="font-size:11px;background:${r.c}22;color:${r.c};padding:3px 9px;border-radius:5px;font-weight:700">${ai.trend}</span>
-    </div>
-  </div>
-  <div id="aiCardBody">
-    <div class="ai-score-wrap">
-      <div class="ai-gauge">
-        <svg width="90" height="90" viewBox="0 0 90 90">
-          <circle cx="45" cy="45" r="37" fill="none" stroke="#21262d" stroke-width="10"/>
-          <circle cx="45" cy="45" r="37" fill="none" stroke="${r.c}" stroke-width="10"
-            stroke-dasharray="${(score/100)*232.5} 232.5" stroke-linecap="round"/>
-        </svg>
-        <div class="ai-gauge-inner">
-          <div class="ai-num" style="color:${r.c}">${score}</div>
-          <div class="ai-of">/100</div>
-        </div>
-      </div>
-      <div class="ai-right">
-        <div class="ai-level" style="color:${r.c}">${ai.riskLevel}</div>
-        <div class="ai-conf" style="color:${r.c}">信心 ${ai.confidence}%</div>
-        <div class="ai-trend" style="color:${r.c}">${ai.trend}</div>
-      </div>
-    </div>
-
-    <div class="ai-summary">${ai.summary}</div>
-
-    ${ai.keyWarning?`<div class="ai-warning" style="background:${r.bg};border-color:${r.bc};color:${r.c}">⚠️ ${ai.keyWarning}</div>`:""}
-
-    <div class="ai-section-title">📋 決策</div>
-    <div class="ai-go-grid">
-      <div class="ai-go"><div class="ai-go-icon">🚗</div><div class="ai-go-name">營業車</div><div class="ai-go-val" style="color:${r.c}">${ai.decisions?.ops||"-"}</div></div>
-      <div class="ai-go"><div class="ai-go-icon">🏎</div><div class="ai-go-name">T4 練習</div><div class="ai-go-val" style="color:${r.c}">${ai.decisions?.t4||"-"}</div></div>
-      <div class="ai-go"><div class="ai-go-icon">🏆</div><div class="ai-go-name">永安盃</div><div class="ai-go-val" style="color:${r.c}">${ai.decisions?.cup||"-"}</div></div>
-    </div>
-
-    ${ai.radarInsight||ai.modelConsensus?`
-    <div class="ai-section-title">🔬 AI 推斷依據</div>
-    ${ai.radarInsight?`<div class="ai-insight">📡 ${ai.radarInsight}</div>`:""}
-    ${ai.modelConsensus?`<div class="ai-insight">📊 ${ai.modelConsensus}</div>`:""}
-    ${ai.peakRisk?`<div class="ai-insight">⚡ ${ai.peakRisk}</div>`:""}
-    `:""}
-
-    <div class="ai-section-title">👥 員工安排</div>
-    <div class="ai-staff-grid">${staffHtml}</div>
-  </div>`;
+const el=document.getElementById("aiCard");if(!el)return;
+const isToday=S.selDay===0;
+if(isToday&&S.aiStatus==="loading"){
+el.style.background=getComputedStyle(document.documentElement).getPropertyValue("--c1");
+el.style.borderColor=getComputedStyle(document.documentElement).getPropertyValue("--bd");
+el.innerHTML=`<div id="aiLoading"><div class="ai-spin-wrap"><div class="spin"></div><span style="font-size:13px;color:var(--bll)">AI 正在分析所有資料</span></div><div class="ai-load-steps">${S.aiSteps.map(s=>`<div>${s}</div>`).join("")}</div></div>`;
+return;
+}
+const ai=isToday&&S.aiResult?S.aiResult:null;
+const fallbackScore=dayAvg(curKey());const score=ai?ai.overallRisk:fallbackScore;const r=rk(score);
+if(!ai){
+el.style.background=r.bg;el.style.borderColor=r.bc;
+const ncdrBadge=isToday&&S.ncdrWarnLv>0?`<div style="margin-top:8px;font-size:11px;color:#f97316;font-weight:700">⚠️ NCDR 短延時預警 Lv${S.ncdrWarnLv}</div>`:"";
+const cityBadge=isToday&&S.ncdrCityWarn>0?`<div style="margin-top:4px;font-size:11px;color:#da3633;font-weight:700">🚨 桃園市豪雨特報</div>`:"";
+el.innerHTML=`<div style="padding:16px"><div style="font-size:10px;color:${r.c};font-weight:700;margin-bottom:6px">${isToday?"📊 數值模型分數（AI 分析等待中）":dayLabel(S.selDay)+" 預測"}</div><div style="font-size:40px;font-weight:900;color:${r.c}">${score}</div><div style="font-size:18px;font-weight:800;color:${r.c};margin-top:4px">${r.l}</div>${ncdrBadge}${cityBadge}<div style="font-size:12px;color:${r.c};opacity:.7;margin-top:8px">按右上角「🔄 分析」開始 AI 預測</div></div>`;
+return;
+}
+el.style.background=r.bg;el.style.borderColor=r.bc;
+const staffHtml=(ai.staff||[]).map((t,i)=>{const roles=["🖥 櫃台","🏁 外場","🔧 技修","👨‍💼 店長"];return`<div class="ai-staff" style="border-left-color:${r.c}"><b>${roles[i]||""}：</b>${t}</div>`;}).join("");
+const ncdrBanner=S.ncdrWarnLv>0?`<div style="background:rgba(249,115,22,.12);border:1px solid #f97316;border-radius:8px;padding:8px 12px;margin-bottom:10px;font-size:12px;color:#f97316;font-weight:700">⚡ NCDR 短延時強降雨預警 Lv${S.ncdrWarnLv}（新屋/觀音區）</div>`:"";
+const cityBanner=S.ncdrCityWarn>0?`<div style="background:rgba(218,54,51,.12);border:1px solid #da3633;border-radius:8px;padding:8px 12px;margin-bottom:10px;font-size:12px;color:#da3633;font-weight:700">🚨 桃園市豪雨特報（等級 ${S.ncdrCityWarn}）</div>`:"";
+el.innerHTML=`
+<div id="aiCardHeader"><div><div style="font-size:10px;font-weight:700;color:${r.c};letter-spacing:.5px">🤖 AI 分析 · ${new Date(S.lastAt).toLocaleTimeString("zh-TW")}</div><div style="font-size:10px;color:${r.c};opacity:.7;margin-top:2px">信心度 ${ai.confidence}%</div></div><div style="text-align:right"><span style="font-size:11px;background:${r.c}22;color:${r.c};padding:3px 9px;border-radius:5px;font-weight:700">${ai.trend}</span></div></div>
+<div id="aiCardBody">
+${ncdrBanner}${cityBanner}
+<div class="ai-score-wrap">
+<div class="ai-gauge"><svg width="90" height="90" viewBox="0 0 90 90"><circle cx="45" cy="45" r="37" fill="none" stroke="#21262d" stroke-width="10"/><circle cx="45" cy="45" r="37" fill="none" stroke="${r.c}" stroke-width="10" stroke-dasharray="${(score/100)*232.5} 232.5" stroke-linecap="round"/></svg><div class="ai-gauge-inner"><div class="ai-num" style="color:${r.c}">${score}</div><div class="ai-of">/100</div></div></div>
+<div class="ai-right"><div class="ai-level" style="color:${r.c}">${ai.riskLevel}</div><div class="ai-conf" style="color:${r.c}">信心 ${ai.confidence}%</div><div class="ai-trend" style="color:${r.c}">${ai.trend}</div></div>
+</div>
+<div class="ai-summary">${ai.summary}</div>
+${ai.keyWarning?`<div class="ai-warning" style="background:${r.bg};border-color:${r.bc};color:${r.c}">⚠️ ${ai.keyWarning}</div>`:""}
+<div class="ai-section-title">📋 決策</div>
+<div class="ai-go-grid">
+<div class="ai-go"><div class="ai-go-icon">🚗</div><div class="ai-go-name">營業車</div><div class="ai-go-val" style="color:${r.c}">${ai.decisions?.ops||"-"}</div></div>
+<div class="ai-go"><div class="ai-go-icon">🏎</div><div class="ai-go-name">T4 練習</div><div class="ai-go-val" style="color:${r.c}">${ai.decisions?.t4||"-"}</div></div>
+<div class="ai-go"><div class="ai-go-icon">🏆</div><div class="ai-go-name">永安盃</div><div class="ai-go-val" style="color:${r.c}">${ai.decisions?.cup||"-"}</div></div>
+</div>
+${ai.radarInsight||ai.modelConsensus?`<div class="ai-section-title">🔬 AI 推斷依據</div>${ai.radarInsight?`<div class="ai-insight">📡 ${ai.radarInsight}</div>`:""}${ai.modelConsensus?`<div class="ai-insight">📊 ${ai.modelConsensus}</div>`:""}${ai.peakRisk?`<div class="ai-insight">⚡ ${ai.peakRisk}</div>`:""}`:""}
+<div class="ai-section-title">👥 員工安排</div>
+<div class="ai-staff-grid">${staffHtml}</div>
+</div>`;
 }
 
-// ── TIMELINE ──────────────────────────────────────────
 function renderTimeline(){
-  const tl=document.getElementById("tl");if(!tl)return;
-  const dk=curKey();
-  const isToday=S.selDay===0;
-  const cs=isToday?curSlot():null;
-  const ai=isToday&&S.aiResult?S.aiResult:null;
-  const aiMap={};(ai?.hourly||[]).forEach(h=>aiMap[h.slot]=h);
-  const scores=SLOTS.map(s=>{
-    if(ai&&aiMap[s])return aiMap[s].risk;
-    return calcAll(getSlot(dk,s)).total;
-  });
-  const mx=Math.max(...scores,1);
-  tl.innerHTML=SLOTS.map((slot,i)=>{
-    const sc=scores[i];const r=rk(sc);
-    const h=Math.max((sc/mx)*44,3);
-    const mm=getSlot(dk,slot).omRain||"-";
-    const isCur=slot===cs;
-    const aiNote=ai&&aiMap[slot]?aiMap[slot].canRun:"";
-    const runColor={"可":"#2ea043","勉強可":"#d29922","不建議":"#f97316","暫停":"#da3633"}[aiNote]||r.c;
-    return`<div class="ts${isCur?" cur":""}">
-      <div class="ts-t">${slot}</div>
-      <div class="ts-bar"><div class="ts-b" style="background:${r.c};height:${h}px"></div></div>
-      <div class="ts-s" style="color:${r.c}">${sc}</div>
-      <div class="ts-r" style="color:${runColor}">${aiNote||r.l}</div>
-      <div class="ts-mm">${mm}mm</div>
-    </div>`;
-  }).join("");
+const tl=document.getElementById("tl");if(!tl)return;
+const dk=curKey();const isToday=S.selDay===0;const cs=isToday?curSlot():null;
+const ai=isToday&&S.aiResult?S.aiResult:null;const aiMap={};(ai?.hourly||[]).forEach(h=>aiMap[h.slot]=h);
+const scores=SLOTS.map(s=>{if(ai&&aiMap[s])return aiMap[s].risk;return calcAll(getSlot(dk,s)).total;});
+const mx=Math.max(...scores,1);
+tl.innerHTML=SLOTS.map((slot,i)=>{
+const sc=scores[i];const r=rk(sc);const h=Math.max((sc/mx)*44,3);
+const mm=getSlot(dk,slot).omRain||"-";const isCur=slot===cs;
+const aiNote=ai&&aiMap[slot]?aiMap[slot].canRun:"";
+const runColor={"可":"#2ea043","勉強可":"#d29922","不建議":"#f97316","暫停":"#da3633"}[aiNote]||r.c;
+const wLv=isToday?getSlot(dk,slot).ncdrWarnLv||0:0;
+const wBadge=wLv>0?`<div style="font-size:7px;background:#f97316;color:#000;border-radius:2px;padding:1px 3px;margin-top:1px">Lv${wLv}</div>`:"";
+return`<div class="ts${isCur?" cur":""}"><div class="ts-t">${slot}</div><div class="ts-bar"><div class="ts-b" style="background:${r.c};height:${h}px"></div></div><div class="ts-s" style="color:${r.c}">${sc}</div><div class="ts-r" style="color:${runColor}">${aiNote||r.l}</div><div class="ts-mm">${mm}mm</div>${wBadge}</div>`;
+}).join("");
 }
 
-// ── TOMORROW ──────────────────────────────────────────
 function renderTmr(){
-  const el=document.getElementById("tmrStrip");if(!el)return;
-  const ai=S.aiResult;
-  el.innerHTML=[
-    {label:"明天",text:ai?.tomorrow||`平均風險 ${dayAvg(dateKey(1))}`},
-    {label:"後天",text:ai?.dayAfter||`平均風險 ${dayAvg(dateKey(2))}`},
-  ].map(item=>`<div class="tmr-item">
-    <div class="tmr-label">${item.label}</div>
-    <div class="tmr-text">${item.text}</div>
-  </div>`).join("");
+const el=document.getElementById("tmrStrip");if(!el)return;const ai=S.aiResult;
+el.innerHTML=[{label:"明天",text:ai?.tomorrow||`平均風險 ${dayAvg(dateKey(1))}`},{label:"後天",text:ai?.dayAfter||`平均風險 ${dayAvg(dateKey(2))}`}].map(item=>`<div class="tmr-item"><div class="tmr-label">${item.label}</div><div class="tmr-text">${item.text}</div></div>`).join("");
 }
 
-// ── SLOT GRID ─────────────────────────────────────────
 function renderSlotGrid(){
-  const el=document.getElementById("slotGrid");if(!el)return;
-  const dk=curKey();
-  const isToday=S.selDay===0;
-  const ai=isToday&&S.aiResult?S.aiResult:null;
-  const aiMap={};(ai?.hourly||[]).forEach(h=>aiMap[h.slot]=h);
-  el.innerHTML=SLOTS.map(slot=>{
-    const s=getSlot(dk,slot);
-    const{total,r:radar,st,cw,om,ec}=calcAll(s);
-    const aiH=aiMap[slot];
-    const sc=aiH?aiH.risk:total;
-    const r=rk(sc);
-    return`<div class="sc" style="border-color:${r.c}44">
-      <div class="sc-h" style="background:${r.c}">
-        <div class="sc-t">${slot}</div>
-        <div class="sc-sr"><div class="sc-n">${sc}</div><div class="sc-l">${r.l}</div></div>
-      </div>
-      <div class="sc-body">
-        ${aiH?.note?`<div class="sc-ai-note" style="border-color:${r.c};color:${r.c}">🤖 ${aiH.note}</div>`:""}
-        <div class="sc-m">
-          <div class="sc-mi"><div class="sc-mn">🌤 OM</div><div class="sc-mv" style="color:${rk(Math.round(om)).c}">${Math.round(om)}</div><div class="sc-ms">${s.omProb||0}%/${s.omRain||0}mm</div></div>
-          <div class="sc-mi"><div class="sc-mn">🔷 ECMWF</div><div class="sc-mv" style="color:${rk(Math.round(ec)).c}">${Math.round(ec)}</div><div class="sc-ms">${s.ecRain||0}mm</div></div>
-          <div class="sc-mi"><div class="sc-mn">📡 雷達</div><div class="sc-mv" style="color:${rk(Math.round(radar)).c}">${Math.round(radar)}</div><div class="sc-ms">強${s.radarInt||"-"}/${s.radarDist||"-"}km</div></div>
-          <div class="sc-mi"><div class="sc-mn">💧 雨量站</div><div class="sc-mv" style="color:${rk(Math.round(st)).c}">${Math.round(st)}</div><div class="sc-ms">新屋${s.rainXinwu||"-"}mm</div></div>
-        </div>
-        <div class="sc-tags">
-          <span class="tag">${s.siteWeather}</span>
-          <span class="tag">${s.siteGround}</span>
-          <span class="tag">${aiH?.canRun||s.canRun}</span>
-          ${s.omAuto?'<span class="tag a">OM</span>':""}${s.ecAuto?'<span class="tag a">EC</span>':""}${s.jmaAuto?'<span class="tag a">JMA</span>':""}
-        </div>
-      </div>
-    </div>`;
-  }).join("");
+const el=document.getElementById("slotGrid");if(!el)return;
+const dk=curKey();const isToday=S.selDay===0;
+const ai=isToday&&S.aiResult?S.aiResult:null;const aiMap={};(ai?.hourly||[]).forEach(h=>aiMap[h.slot]=h);
+el.innerHTML=SLOTS.map(slot=>{
+const s=getSlot(dk,slot);const{total,r:radar,st,cw,om,ec}=calcAll(s);
+const aiH=aiMap[slot];const sc=aiH?aiH.risk:total;const r=rk(sc);
+const ncdrWarn=s.ncdrWarnLv>0?`<span class="tag ncdr">⚡ NCDR Lv${s.ncdrWarnLv}</span>`:"";
+return`<div class="sc" style="border-color:${r.c}44">
+<div class="sc-h" style="background:${r.c}"><div class="sc-t">${slot}</div><div class="sc-sr"><div class="sc-n">${sc}</div><div class="sc-l">${r.l}</div></div></div>
+<div class="sc-body">
+${aiH?.note?`<div class="sc-ai-note" style="border-color:${r.c};color:${r.c}">🤖 ${aiH.note}</div>`:""}
+<div class="sc-m">
+<div class="sc-mi"><div class="sc-mn">🌤 OM</div><div class="sc-mv" style="color:${rk(Math.round(om)).c}">${Math.round(om)}</div><div class="sc-ms">${s.omProb||0}%/${s.omRain||0}mm</div></div>
+<div class="sc-mi"><div class="sc-mn">🔷 ECMWF</div><div class="sc-mv" style="color:${rk(Math.round(ec)).c}">${Math.round(ec)}</div><div class="sc-ms">${s.ecRain||0}mm</div></div>
+<div class="sc-mi"><div class="sc-mn">💧 新屋</div><div class="sc-mv" style="color:${rk(Math.round(st)).c}">${Math.round(st)}</div><div class="sc-ms">${s.rainXinwu||"-"}mm</div></div>
+<div class="sc-mi"><div class="sc-mn">🌧 觀音</div><div class="sc-mv" style="color:${rk(Math.round(st)).c}">${s.rainGuanyin||"-"}</div><div class="sc-ms">楊梅${s.rainYangmei||"-"}mm</div></div>
+</div>
+<div class="sc-tags"><span class="tag">${s.siteWeather}</span><span class="tag">${s.siteGround}</span><span class="tag">${aiH?.canRun||s.canRun}</span>${s.omAuto?'<span class="tag a">OM</span>':""}${s.ncdrAuto?'<span class="tag ncdr">NCDR</span>':""}${ncdrWarn}</div>
+</div></div>`;
+}).join("");
 }
 
-// ── IMG PREVIEWS ──────────────────────────────────────
 function updateImgPreviews(){
-  const rp=document.getElementById("radarPreview");
-  const sp=document.getElementById("satPreview");
-  if(rp&&S.radarUrl){
-    rp.innerHTML=`<div style="font-size:10px;color:var(--mu);margin-bottom:4px">📡 CWA 雷達回波 (最新)</div>
-    <img class="img-preview" src="${S.radarUrl}" onerror="this.style.display='none'" crossorigin="anonymous">`;
-  }
-  if(sp&&S.satUrl){
-    sp.innerHTML=`<div style="font-size:10px;color:var(--mu);margin-bottom:4px">🛰 Himawari 衛星雲圖 (最新)</div>
-    <img class="img-preview" src="${S.satUrl}" onerror="this.style.display='none'" crossorigin="anonymous">`;
-  }
+const rp=document.getElementById("radarPreview");const sp=document.getElementById("satPreview");
+if(rp&&S.ncdrRadarUrl){rp.innerHTML=`<div style="font-size:10px;color:var(--mu);margin-bottom:4px">📡 NCDR 雷達雨量合成圖（60min 累積）</div><img class="img-preview" src="${S.ncdrRadarUrl}" onerror="this.style.display='none'">`;}
+else if(rp&&S.radarUrl){rp.innerHTML=`<div style="font-size:10px;color:var(--mu);margin-bottom:4px">📡 CWA 雷達回波 (最新)</div><img class="img-preview" src="${S.radarUrl}" onerror="this.style.display='none'" crossorigin="anonymous">`;}
+if(sp&&S.satUrl){sp.innerHTML=`<div style="font-size:10px;color:var(--mu);margin-bottom:4px">🛰 Himawari 衛星雲圖 (最新)</div><img class="img-preview" src="${S.satUrl}" onerror="this.style.display='none'" crossorigin="anonymous">`;}
 }
 
-// ── SLOT FORM ─────────────────────────────────────────
 function renderSlotForm(){
-  const sb=document.getElementById("slotSelBtns");
-  if(sb){
-    const dk=curKey();
-    sb.innerHTML=SLOTS.map(s=>{
-      const sc=calcAll(getSlot(dk,s)).total,r=rk(sc),on=s===S.selSlot;
-      return`<button class="${on?"on":""}" style="${on?`background:${r.c};border-color:${r.c};color:#fff`:`border-color:${r.c}44;color:var(--mu)`}" onclick="selSlot('${s}')">${s}</button>`;
-    }).join("");
-  }
-  const ef=document.getElementById("slotForm");if(!ef)return;
-  const dk=curKey();const s=getSlot(dk,S.selSlot);
-  const nf=(l,f)=>`<div><label class="fl">${l}</label><input type="number" step="0.1" value="${s[f]||""}" oninput="upSlot('${f}',this.value)"></div>`;
-  const sf=(l,f,o)=>`<div><label class="fl">${l}</label><select onchange="upSlot('${f}',this.value)">${o.map(v=>`<option${s[f]===v?" selected":""}>${v}</option>`).join("")}</select></div>`;
-  ef.innerHTML=`<div class="fg">
-    ${nf("📡 雷達距離 km","radarDist")}${sf("雷達強度","radarInt",["","0","1","2","3","4","5"])}${sf("雨帶朝向","radarDir",["是","否","不確定"])}
-    ${nf("新屋 mm/h","rainXinwu")}${nf("觀音 mm/h","rainGuanyin")}${nf("楊梅 mm/h","rainYangmei")}${nf("湖口/新豐","rainHukou")}
-    ${sf("現場天氣","siteWeather",["無雨","毛毛雨","小雨","中雨","大雨"])}${sf("地面狀態","siteGround",["乾","微濕","濕","積水"])}
-    ${sf("能否跑車","canRun",["可","勉強可","不建議","暫停"])}
-    <div style="grid-column:span 2"><label class="fl">備註</label>
-    <textarea rows="2" oninput="upSlot('remark',this.value)">${s.remark||""}</textarea></div>
-  </div>
-  <div style="font-size:10px;color:#4a5568;margin-top:-4px">※ 天氣模型數值已自動填入，這裡只需補充雷達和現場觀察，填完後點「🔄 分析」讓 AI 重新判斷</div>`;
+const sb=document.getElementById("slotSelBtns");
+if(sb){const dk=curKey();sb.innerHTML=SLOTS.map(s=>{const sc=calcAll(getSlot(dk,s)).total,r=rk(sc),on=s===S.selSlot;return`<button class="${on?"on":""}" style="${on?`background:${r.c};border-color:${r.c};color:#fff`:`border-color:${r.c}44;color:var(--mu)`}" onclick="selSlot('${s}')">${s}</button>`;}).join("");}
+const ef=document.getElementById("slotForm");if(!ef)return;
+const dk=curKey();const s=getSlot(dk,S.selSlot);
+const nf=(l,f)=>`<div><label class="fl">${l}</label><input type="number" step="0.1" value="${s[f]||""}" oninput="upSlot('${f}',this.value)"></div>`;
+const sf=(l,f,o)=>`<div><label class="fl">${l}</label><select onchange="upSlot('${f}',this.value)">${o.map(v=>`<option${s[f]===v?" selected":""}>${v}</option>`).join("")}</select></div>`;
+ef.innerHTML=`<div class="fg">
+${nf("📡 雷達距離 km","radarDist")}${sf("雷達強度","radarInt",["","0","1","2","3","4","5"])}${sf("雨帶朝向","radarDir",["是","否","不確定"])}
+${nf("新屋 mm","rainXinwu")}${nf("觀音 mm","rainGuanyin")}${nf("楊梅 mm","rainYangmei")}${nf("湖口/新豐","rainHukou")}
+${sf("現場天氣","siteWeather",["無雨","毛毛雨","小雨","中雨","大雨"])}${sf("地面狀態","siteGround",["乾","微濕","濕","積水"])}
+${sf("能否跑車","canRun",["可","勉強可","不建議","暫停"])}
+<div style="grid-column:span 2"><label class="fl">備註</label><textarea rows="2" oninput="upSlot('remark',this.value)">${s.remark||""}</textarea></div>
+</div>
+<div style="font-size:10px;color:#4a5568;margin-top:-4px">※ NCDR 雨量已自動填入（每 30 分鐘更新），這裡只需補充雷達和現場觀察</div>`;
 }
 function selSlot(s){S.selSlot=s;renderSlotForm();}
 function upSlot(f,v){setSlot(curKey(),S.selSlot,{[f]:v});saveS();renderTimeline();}
 
-// ── HISTORY ───────────────────────────────────────────
 function renderHistory(){
-  const hs=document.getElementById("histStats");
-  if(hs)hs.innerHTML=[[7,"7 天"],[30,"30 天"]].map(([n,l])=>{
-    const a=S.history.slice(0,n),rt=a.filter(r=>r.ok!==null);
-    const ac=rt.length?Math.round(rt.filter(r=>r.ok).length/rt.length*100):null;
-    return`<div class="card hsc"><div class="hsl">${l}準確率</div><div class="hsv">${ac!==null?ac+"%":"N/A"}</div><div class="hss">${a.length}筆/${rt.length}已驗</div></div>`;
-  }).join("");
-  const tb=document.getElementById("histTb");if(!tb)return;
-  if(!S.history.length){tb.innerHTML=`<tr><td colspan="5" style="text-align:center;padding:28px;color:#30363d">在 AI 分析頁按「💾 儲存記錄」</td></tr>`;return;}
-  tb.innerHTML=S.history.map((rec,i)=>{
-    const r=rk(rec.score);
-    return`<tr><td>${rec.date}</td><td style="color:${r.c};font-weight:700">${rec.score}</td>
-    <td><span style="background:${r.c}22;color:${r.c};padding:2px 7px;border-radius:4px;font-size:10px">${rec.label}</span></td>
-    <td>${rec.weather}</td>
-    <td><div style="display:flex;gap:4px">
-      <button class="vb" style="background:#238636;opacity:${rec.ok===true?1:.35}" onclick="verH(${i},true)">✓</button>
-      <button class="vb" style="background:#da3633;opacity:${rec.ok===false?1:.35}" onclick="verH(${i},false)">✗</button>
-    </div></td></tr>`;
-  }).join("");
+const hs=document.getElementById("histStats");
+if(hs)hs.innerHTML=[[7,"7 天"],[30,"30 天"]].map(([n,l])=>{const a=S.history.slice(0,n),rt=a.filter(r=>r.ok!==null);const ac=rt.length?Math.round(rt.filter(r=>r.ok).length/rt.length*100):null;return`<div class="card hsc"><div class="hsl">${l}準確率</div><div class="hsv">${ac!==null?ac+"%":"N/A"}</div><div class="hss">${a.length}筆/${rt.length}已驗</div></div>`;}).join("");
+const tb=document.getElementById("histTb");if(!tb)return;
+if(!S.history.length){tb.innerHTML=`<tr><td colspan="5" style="text-align:center;padding:28px;color:#30363d">在 AI 分析頁按「💾 儲存記錄」</td></tr>`;return;}
+tb.innerHTML=S.history.map((rec,i)=>{const r=rk(rec.score);return`<tr><td>${rec.date}</td><td style="color:${r.c};font-weight:700">${rec.score}</td><td><span style="background:${r.c}22;color:${r.c};padding:2px 7px;border-radius:4px;font-size:10px">${rec.label}</span></td><td>${rec.weather}</td><td><div style="display:flex;gap:4px"><button class="vb" style="background:#238636;opacity:${rec.ok===true?1:.35}" onclick="verH(${i},true)">✓</button><button class="vb" style="background:#da3633;opacity:${rec.ok===false?1:.35}" onclick="verH(${i},false)">✗</button></div></td></tr>`;}).join("");
 }
 function verH(i,v){S.history[i].ok=v;saveS();renderHistory();}
 function saveHist(){
-  const dk=dateKey(0);const sc=S.aiResult?S.aiResult.overallRisk:dayAvg(dk);const r=rk(sc);
-  S.history.unshift({date:new Date().toLocaleDateString("zh-TW"),score:sc,label:r.l,weather:getSlot(dk,"14:00").siteWeather||"-",ok:null});
-  S.history=S.history.slice(0,90);saveS();renderHistory();toast("💾 記錄已儲存");
+const dk=dateKey(0);const sc=S.aiResult?S.aiResult.overallRisk:dayAvg(dk);const r=rk(sc);
+S.history.unshift({date:new Date().toLocaleDateString("zh-TW"),score:sc,label:r.l,weather:getSlot(dk,"14:00").siteWeather||"-",ok:null});
+S.history=S.history.slice(0,90);saveS();renderHistory();toast("💾 記錄已儲存");
 }
 
-// ── NOTICE ────────────────────────────────────────────
 function makeNotice(){
-  const ai=S.aiResult;
-  const dk=dateKey(0);const sc=ai?ai.overallRisk:dayAvg(dk);const r=rk(sc);
-  const at=S.lastAt?new Date(S.lastAt).toLocaleTimeString("zh-TW"):"未取得";
-  const dec=ai?.decisions||{ops:"-",t4:"-",cup:"-"};
-  const staff=ai?.staff||["-","-","-","-"];
-  const txt=`【永安卡丁車｜今日 AI 雨勢風險評估】${new Date().toLocaleDateString("zh-TW")}
+const ai=S.aiResult;const dk=dateKey(0);const sc=ai?ai.overallRisk:dayAvg(dk);const r=rk(sc);
+const at=S.lastAt?new Date(S.lastAt).toLocaleTimeString("zh-TW"):"未取得";
+const dec=ai?.decisions||{ops:"-",t4:"-",cup:"-"};const staff=ai?.staff||["-","-","-","-"];
+const ncdrLine=S.ncdrWarnLv>0?`⚡ NCDR 短延時預警：Lv${S.ncdrWarnLv}\n`:"";
+const cityLine=S.ncdrCityWarn>0?`🚨 桃園市豪雨特報（等級${S.ncdrCityWarn}）\n`:"";
+const txt=`【永安卡丁車｜今日 AI 雨勢風險評估】${new Date().toLocaleDateString("zh-TW")}
 
 📊 AI 風險分數：${sc}/100（${r.l}）
 🤖 分析時間：${at}
-📡 資料來源：Open-Meteo ECMWF・GFS・JMA・CWA 雨量站
+📡 資料來源：Open-Meteo ECMWF・GFS・JMA・NCDR 即時預警
 
-${ai?.summary||""}
+${ncdrLine}${cityLine}${ai?.summary||""}
 ${ai?.keyWarning?"⚠️ "+ai.keyWarning:""}
 
 ════════════════
@@ -936,64 +721,55 @@ ${ai?.keyWarning?"⚠️ "+ai.keyWarning:""}
 ${ai?.peakRisk?"⚡ "+ai.peakRisk:""}
 
 非客人安全車輛重大問題，下午統一回報。`;
-  document.getElementById("noticeEmpty").classList.add("hid");
-  const ta=document.getElementById("nta");ta.classList.remove("hid");ta.value=txt;
-  showTab("notice",document.querySelector(".tb:nth-child(5)"));
+document.getElementById("noticeEmpty").classList.add("hid");
+const ta=document.getElementById("nta");ta.classList.remove("hid");ta.value=txt;
+showTab("notice",document.querySelector(".tb:nth-child(5)"));
 }
 function copyNotice(){
-  const ta=document.getElementById("nta");
-  navigator.clipboard.writeText(ta.value).then(()=>{
-    document.getElementById("cpBtn").textContent="✅ 已複製";
-    setTimeout(()=>document.getElementById("cpBtn").textContent="📋 複製",2000);
-    toast("✅ 公告已複製");
-  }).catch(()=>{ta.select();document.execCommand("copy");toast("✅ 複製成功");});
+const ta=document.getElementById("nta");
+navigator.clipboard.writeText(ta.value).then(()=>{document.getElementById("cpBtn").textContent="✅ 已複製";setTimeout(()=>document.getElementById("cpBtn").textContent="📋 複製",2000);toast("✅ 公告已複製");}).catch(()=>{ta.select();document.execCommand("copy");toast("✅ 複製成功");});
 }
 
-// ── MISC ──────────────────────────────────────────────
 function clearToday(){
-  if(!confirm("確定清空今天的資料？"))return;
-  S.dayData[dateKey(0)]={};S.aiResult=null;S.aiStatus="idle";
-  saveS();renderAll();toast("🗑️ 今天資料已清空");
+if(!confirm("確定清空今天的資料？"))return;
+S.dayData[dateKey(0)]={};S.aiResult=null;S.aiStatus="idle";S.ncdrWarnLv=0;
+saveS();renderAll();toast("🗑️ 今天資料已清空");
 }
+
 function updateHeader(){
-  const d=s=>({idle:"⚪",loading:"🟡",ok:"🟢",error:"🔴"}[s]);
-  const el=document.getElementById("stLine");if(!el)return;
-  const at=S.lastAt?new Date(S.lastAt).toLocaleTimeString("zh-TW"):"等待";
-  const aiLbl=S.aiStatus==="loading"?'<span style="color:var(--bll)">AI分析中...</span>':S.aiStatus==="ok"?"AI✅":"AI⚪";
-  el.innerHTML=`OM ${d(S.omSt)} CWA ${d(S.cwaSt)} ${aiLbl} · ${at}`;
+const d=s=>({idle:"⚪",loading:"🟡",ok:"🟢",error:"🔴"}[s]);
+const el=document.getElementById("stLine");if(!el)return;
+const at=S.lastAt?new Date(S.lastAt).toLocaleTimeString("zh-TW"):"等待";
+const ncdrBadge=S.ncdrWarnLv>0?`<span style="color:#f97316;font-weight:700"> ⚡NCDR Lv${S.ncdrWarnLv}</span>`:"";
+const aiLbl=S.aiStatus==="loading"?'<span style="color:var(--bll)">AI分析中...</span>':S.aiStatus==="ok"?"AI✅":"AI⚪";
+el.innerHTML=`OM ${d(S.omSt)} NCDR ${d(S.ncdrSt)} CWA ${d(S.cwaSt)} ${aiLbl}${ncdrBadge} · ${at}`;
 }
 function toast(msg){const el=document.getElementById("toast");el.textContent=msg;el.classList.add("on");setTimeout(()=>el.classList.remove("on"),2200);}
 function addLog(msg){
-  S.logs.unshift(new Date().toLocaleTimeString("zh-TW")+" "+msg);S.logs=S.logs.slice(0,30);
-  const el=document.getElementById("logBox");
-  if(el)el.innerHTML=S.logs.map(l=>`<div>${l}</div>`).join("");
+S.logs.unshift(new Date().toLocaleTimeString("zh-TW")+" "+msg);S.logs=S.logs.slice(0,30);
+const el=document.getElementById("logBox");if(el)el.innerHTML=S.logs.map(l=>`<div>${l}</div>`).join("");
 }
 function showTab(id,btn){
-  ["dash","slots","input","hist","notice"].forEach(t=>{const el=document.getElementById("tab-"+t);if(el)el.classList.toggle("hid",t!==id);});
-  document.querySelectorAll(".tb").forEach(b=>b.classList.remove("on"));
-  if(btn)btn.classList.add("on");
-  if(id==="input"){renderSlotForm();syncCfgToUI();updateImgPreviews();}
-  if(id==="hist")renderHistory();
-  if(id==="slots")renderSlotGrid();
+["dash","slots","input","hist","notice"].forEach(t=>{const el=document.getElementById("tab-"+t);if(el)el.classList.toggle("hid",t!==id);});
+document.querySelectorAll(".tb").forEach(b=>b.classList.remove("on"));
+if(btn)btn.classList.add("on");
+if(id==="input"){renderSlotForm();syncCfgToUI();updateImgPreviews();}
+if(id==="hist")renderHistory();
+if(id==="slots")renderSlotGrid();
 }
 function syncCfg(){
-  const la=document.getElementById("cfgLat"),lo=document.getElementById("cfgLng"),ck=document.getElementById("cfgCwaKey");
-  const ak=document.getElementById("cfgAnthropicKey");if(la?.value)S.lat=la.value;if(lo?.value)S.lng=lo.value;if(ck?.value)S.cwaKey=ck.value;if(ak?.value)S.geminiKey=ak.value;saveS();
+const la=document.getElementById("cfgLat"),lo=document.getElementById("cfgLng"),ck=document.getElementById("cfgCwaKey"),ak=document.getElementById("cfgAnthropicKey");
+if(la?.value)S.lat=la.value;if(lo?.value)S.lng=lo.value;if(ck?.value)S.cwaKey=ck.value;if(ak?.value)S.geminiKey=ak.value;saveS();
 }
 function syncCfgToUI(){
-  const la=document.getElementById("cfgLat"),lo=document.getElementById("cfgLng"),ck=document.getElementById("cfgCwaKey");
-  const akui=document.getElementById("cfgAnthropicKey");if(la)la.value=S.lat;if(lo)lo.value=S.lng;if(ck)ck.value=S.cwaKey;if(akui)akui.value=S.geminiKey||"";
+const la=document.getElementById("cfgLat"),lo=document.getElementById("cfgLng"),ck=document.getElementById("cfgCwaKey"),ak=document.getElementById("cfgAnthropicKey");
+if(la)la.value=S.lat;if(lo)lo.value=S.lng;if(ck)ck.value=S.cwaKey;if(ak)ak.value=S.geminiKey||"";
 }
 
-// ════════════════════════════════════════════════════════
-// INIT
-// ════════════════════════════════════════════════════════
-loadS();
-renderAll();
-if(!S.geminiKey||!S.lastAt||Date.now()-new Date(S.lastAt)>28*60*1000){doRefresh();}else{fetchModels().then(()=>{if(S.cwaKey)fetchCWA();renderAll();addLog('⏩ AI 快取有效，跳過重新分析');});}
-// 每 30 分鐘自動更新
+loadS();renderAll();
+if(!S.geminiKey||!S.lastAt||Date.now()-new Date(S.lastAt)>28*60*1000){doRefresh();}
+else{fetchModels().then(async()=>{await fetchNCDR();if(S.cwaKey)await fetchCWA();renderAll();addLog('⏩ AI 快取有效，跳過重新分析');});}
 setInterval(()=>{doRefresh();addLog("🔄 30 分鐘自動更新");},30*60*1000);
-// 每分鐘刷新 NOW 顯示
 setInterval(()=>{if(S.selDay===0){renderTimeline();renderDayNav();}},60*1000);
 </script>
 </body>
