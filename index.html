@@ -352,10 +352,11 @@ aiStep("📡 NCDR 抓取即時雨量 + 短延時預警...");
 try{
 // 1. 取最新雷達時間 → 建構圖片 URL
 const timeText=await fetch("https://corsproxy.io/?url=https://watch.ncdr.nat.gov.tw/php/list_realtime_date_csv.php?v=CHART_RADAR_10MIN",{signal:AbortSignal.timeout(10000)}).then(r=>r.text());
-const lt=timeText.split(",")[1]?.trim();// e.g. "202506071630"
+const lt=(timeText.split(",")[1]?.trim()||'').replace(/\D/g,'').substring(0,12);// e.g. "202606071630"
 if(lt&&lt.length===12){
 const y=lt.substring(0,4),mo=lt.substring(4,6),d=lt.substring(6,8);
 S.ncdrRadarUrl=`https://watch.ncdr.nat.gov.tw/00_Wxmap/7F16_NCDRQPN/${y}${mo}/${y}${mo}${d}/hybridR_060_${lt}.png`;
+S.radarUrl=S.ncdrRadarUrl;
 S.radarUrl=S.ncdrRadarUrl;// 覆蓋舊的 CWA 雷達 URL
 addLog(`✅ NCDR 雷達圖時間：${lt}`);
 }
