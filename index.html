@@ -267,6 +267,7 @@ rainXinwu:"",rainGuanyin:"",rainYangmei:"",rainHukou:"",
 ncdrRain1:"",ncdrRain2:"",ncdrWarnLv:0,
 siteWeather:"無雨",siteGround:"乾",canRun:"可",remark:"",
 omAuto:false,ecAuto:false,gfsAuto:false,jmaAuto:false,cwaAuto:false,ncdrAuto:false,
+siteManual:false,
 });
 
 let S={
@@ -320,7 +321,7 @@ const c=gv(codes,h1);
 const u={[mdef.auto]:true};
 if(r!==null)u[mdef.rr]=r.toFixed(2);
 if(mdef.rp&&p!==null)u[mdef.rp]=String(Math.round(p));
-if(mdef.key==="om"&&day===0){if(c!==null)u.siteWeather=wCode(c);if(r!==null){u.siteGround=gState(r);u.canRun=r<=0?"可":r<=0.5?"勉強可":r<=3?"不建議":"暫停";}}
+if(mdef.key==="om"&&day===0){const cur=getSlot(dk,slot);if(c!==null&&!cur.siteManual)u.siteWeather=wCode(c);if(r!==null&&!cur.siteManual){u.siteGround=gState(r);u.canRun=r<=0?"可":r<=0.5?"勉強可":r<=3?"不建議":"暫停";}}
 setSlot(dk,slot,u);
 });
 }
@@ -519,7 +520,7 @@ aiStep("🤖 Gemini AI 正在分析...");
 renderAICard();
 try{
 const prompt=buildPrompt(radarB64,satB64);
-const geminiBody={contents:[{parts:[]}]};
+const geminiBody={contents:[{parts:[]}],generationConfig:{temperature:0}};
 if(radarB64){geminiBody.contents[0].parts.push({inline_data:{mime_type:"image/png",data:radarB64}});geminiBody.contents[0].parts.push({text:"[上圖：NCDR 最新 60 分鐘累積雨量合成圖，台灣範圍]"});}
 geminiBody.contents[0].parts.push({text:prompt});
 const data=await callGeminiWithRetry(geminiBody);
@@ -671,7 +672,7 @@ ${sf("能否跑車","canRun",["可","勉強可","不建議","暫停"])}
 <div style="font-size:10px;color:#4a5568;margin-top:-4px">※ NCDR 雨量已自動填入（每 30 分鐘更新），這裡只需補充雷達和現場觀察</div>`;
 }
 function selSlot(s){S.selSlot=s;renderSlotForm();}
-function upSlot(f,v){setSlot(curKey(),S.selSlot,{[f]:v});saveS();renderTimeline();}
+function upSlot(f,v){const ex=["siteWeather","siteGround","canRun"].includes(f)?{siteManual:true}:{};setSlot(curKey(),S.selSlot,{[f]:v,...ex});saveS();renderTimeline();}
 
 function renderHistory(){
 const hs=document.getElementById("histStats");
