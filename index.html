@@ -449,7 +449,7 @@ return await new Promise((resolve,reject)=>{const fr=new FileReader();fr.onloade
 
 // ── GEMINI AI with 429 retry ──
 async function callGeminiWithRetry(body,maxRetry=3){
-const models=["gemini-2.5-flash-preview-05-20","gemini-2.0-flash","gemini-1.5-flash"];
+const models=["gemini-2.5-flash","gemini-2.0-flash","gemini-2.0-flash-lite"];
 let lastErr=null;
 for(let mi=0;mi<models.length;mi++){
 const model=models[mi];
@@ -511,10 +511,8 @@ ${S.satUrl&&!satBase64?`【衛星圖 URL】${S.satUrl}`:""}
 
 async function runAI(){
 S.aiStatus="loading";S.aiSteps=[];renderAICard();
-aiStep("📡 抓取 NCDR 雷達合成圖...");
-const radarB64=await fetchNcdrRadarBase64();
-if(radarB64)aiStep("✅ NCDR 雷達圖已傳入");
-else{aiStep("🛰 嘗試 Himawari 衛星雲圖...");await fetchSatUrl();}
+await fetchSatUrl();
+const radarB64=null;
 const satB64=null;// 衛星圖只傳 URL，不傳 base64（減少 token）
 updateImgPreviews();
 aiStep("🤖 Gemini AI 正在分析...");
