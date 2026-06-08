@@ -351,7 +351,7 @@ S.ncdrSt="loading";updateHeader();
 aiStep("📡 NCDR 抓取即時雨量 + 短延時預警...");
 try{
 // 1. 取最新雷達時間 → 建構圖片 URL
-const timeText=await fetch("https://watch.ncdr.nat.gov.tw/php/list_realtime_date_csv.php?v=CHART_RADAR_10MIN",{signal:AbortSignal.timeout(8000)}).then(r=>r.text());
+const timeText=await fetch("https://corsproxy.io/?url=https://watch.ncdr.nat.gov.tw/php/list_realtime_date_csv.php?v=CHART_RADAR_10MIN",{signal:AbortSignal.timeout(10000)}).then(r=>r.text());
 const lt=timeText.split(",")[1]?.trim();// e.g. "202506071630"
 if(lt&&lt.length===12){
 const y=lt.substring(0,4),mo=lt.substring(4,6),d=lt.substring(6,8);
@@ -361,7 +361,7 @@ addLog(`✅ NCDR 雷達圖時間：${lt}`);
 }
 
 // 2. 即時多站雨量（新屋/觀音/楊梅）
-const rgText=await fetch("https://watch.ncdr.nat.gov.tw/wh/jn_raingauge_list",{signal:AbortSignal.timeout(8000)}).then(r=>r.text());
+const rgText=await fetch("https://corsproxy.io/?url=https://watch.ncdr.nat.gov.tw/wh/jn_raingauge_list",{signal:AbortSignal.timeout(10000)}).then(r=>r.text());
 const rgLines=rgText.split("\n");
 const getStation=id=>{
 const line=rgLines.find(l=>l.includes(`"${id}"`));
@@ -385,7 +385,7 @@ const xv=xinwu?.rain10m??"-",gv=guanyin?.rain10m??"-",yv=yangmei?.rain10m??"-";
 addLog(`✅ NCDR 雨量：新屋${xv}mm 觀音${gv}mm 楊梅${yv}mm`);
 
 // 3. 短延時鄉鎮預警（新屋未來 120 分鐘，每 10 分鐘一步）
-const nowcastText=await fetch("https://watch.ncdr.nat.gov.tw/wh/dv_ncdrnowcast_town?",{signal:AbortSignal.timeout(8000)}).then(r=>r.text());
+const nowcastText=await fetch("https://corsproxy.io/?url=https://watch.ncdr.nat.gov.tw/wh/dv_ncdrnowcast_town",{signal:AbortSignal.timeout(10000)}).then(r=>r.text());
 const getLevel=townId=>{const line=nowcastText.split("\n").find(l=>l.startsWith(townId+","));return line?parseInt(line.split(",")[1])||0:0;};
 const xinwuLv=getLevel("6801100");   // 新屋區
 const guanyinLv=getLevel("6801200"); // 觀音區
@@ -396,7 +396,7 @@ if(S.ncdrWarnLv>0)addLog(`⚠️ NCDR 預警：新屋Lv${xinwuLv} 觀音Lv${guan
 else addLog("✅ NCDR 短延時預警：新屋/觀音/蘆竹 無預警");
 
 // 4. 縣市豪大雨警戒
-const extremeText=await fetch("https://watch.ncdr.nat.gov.tw/php/list_extreme_rain_city_csv?0",{signal:AbortSignal.timeout(8000)}).then(r=>r.text());
+const extremeText=await fetch("https://corsproxy.io/?url=https://watch.ncdr.nat.gov.tw/php/list_extreme_rain_city_csv?0",{signal:AbortSignal.timeout(10000)}).then(r=>r.text());
 const taoyuanLine=extremeText.split("\n").find(l=>l.includes(",68,"));
 S.ncdrCityWarn=taoyuanLine?parseInt(taoyuanLine.split(",")[2])||0:0;
 if(S.ncdrCityWarn>0)addLog(`🚨 桃園市豪雨特報等級 ${S.ncdrCityWarn}`);
@@ -439,7 +439,7 @@ return await new Promise((resolve,reject)=>{const fr=new FileReader();fr.onloade
 async function fetchNcdrRadarBase64(){
 if(!S.ncdrRadarUrl)return null;
 try{
-const res=await fetch(S.ncdrRadarUrl,{signal:AbortSignal.timeout(8000)});
+const res=await fetch("https://corsproxy.io/?url="+S.ncdrRadarUrl,{signal:AbortSignal.timeout(10000)});
 if(!res.ok)throw new Error("ncdr radar 404");
 const blob=await res.blob();
 return await new Promise((resolve,reject)=>{const fr=new FileReader();fr.onloadend=()=>resolve(fr.result.split(",")[1]);fr.onerror=reject;fr.readAsDataURL(blob);});
@@ -448,7 +448,7 @@ return await new Promise((resolve,reject)=>{const fr=new FileReader();fr.onloade
 
 // ── GEMINI AI with 429 retry ──
 async function callGeminiWithRetry(body,maxRetry=3){
-const models=["gemini-2.0-flash","gemini-1.5-flash","gemini-1.5-flash-8b"];
+const models=["gemini-2.5-flash-preview-05-20","gemini-2.0-flash","gemini-1.5-flash"];
 let lastErr=null;
 for(let mi=0;mi<models.length;mi++){
 const model=models[mi];
