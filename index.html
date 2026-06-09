@@ -586,6 +586,7 @@ ${dayLabel(d)}${warnBadge}${aiDot}<span class="risk-dot" style="background:${r.c
 </button>`;
 }).join("");
 }
+function selDay(d){S.selDay=d;saveS();renderAll();}
 
 function renderAICard(){
 const el=document.getElementById("aiCard");if(!el)return;
