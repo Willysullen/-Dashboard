@@ -288,7 +288,7 @@ function curKey(){return dateKey(S.selDay);}
 function getSlot(dk,slot){if(!S.dayData[dk])S.dayData[dk]={};if(!S.dayData[dk][slot])S.dayData[dk][slot]=emptySlot();return S.dayData[dk][slot];}
 function setSlot(dk,slot,u){if(!S.dayData[dk])S.dayData[dk]={};if(!S.dayData[dk][slot])S.dayData[dk][slot]=emptySlot();Object.assign(S.dayData[dk][slot],u);}
 function dayAvg(dk){const sc=SLOTS.map(s=>calcAll(getSlot(dk,s)).total);return Math.round(sc.reduce((a,b)=>a+b,0)/sc.length);}
-function curSlot(){const now=new Date(),m=now.getHours()*60+now.getMinutes();return SLOTS.reduce((best,s)=>{const[h,mn]=s.split(":").map(Number);return Math.abs(h*60+mn-m)<Math.abs(best.split(":").map(Number).reduce((a,b,i)=>i===0?a*60:a+b)-m)?s:best;});}
+function curSlot(){const now=new Date(),m=now.getHours()*60+now.getMinutes();return SLOTS.reduce((best,s)=>{const[h,mn]=s.split(":").map(Number);const[bh,bmn]=best.split(":").map(Number);return Math.abs(h*60+mn-m)<Math.abs(bh*60+bmn-m)?s:best;});}
 
 function saveS(){try{localStorage.setItem(LS,JSON.stringify(S));}catch(e){}}
 function loadS(){try{const d=localStorage.getItem(LS);if(d)Object.assign(S,JSON.parse(d));}catch(e){}}
