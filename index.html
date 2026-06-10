@@ -210,7 +210,7 @@ NCDR 雷達合成圖直接傳給 AI 分析（無 CORS 問題）<br>
 <div id="tab-hist" class="hid">
 <div class="hst" id="histStats"></div>
 <div class="card" style="overflow-x:auto">
-<table><thead><tr><th>日期</th><th>分數</th><th>狀態</th><th>上午實況</th><th>下午實況</th><th>準確度</th></tr></thead>
+<table><thead><tr><th>日期</th><th>分數</th><th>狀態</th><th>上午實況</th><th>中午實況</th><th>下午實況</th><th>準確度</th></tr></thead>
 <tbody id="histTb"></tbody></table>
 </div>
 </div>
@@ -743,25 +743,31 @@ const hs=document.getElementById("histStats");
 if(hs){
 const calcAcc=(recs,field)=>{const rt=recs.filter(r=>r[field]!==null&&r[field]!==undefined&&r.amScore!==undefined);if(!rt.length)return null;return Math.round(rt.filter(r=>r[field]==="ok").length/rt.length*100);};
 const n7=S.history.slice(0,7),n30=S.history.slice(0,30);
-const accFull7=calcAcc(n7,"okFull"),accAm7=calcAcc(n7,"okAm"),accPm7=calcAcc(n7,"okPm");
-const accFull30=calcAcc(n30,"okFull"),accAm30=calcAcc(n30,"okAm"),accPm30=calcAcc(n30,"okPm");
+const accFull7=calcAcc(n7,"okFull"),accAm7=calcAcc(n7,"okAm"),accNoon7=calcAcc(n7,"okNoon"),accPm7=calcAcc(n7,"okPm");
+const accFull30=calcAcc(n30,"okFull"),accAm30=calcAcc(n30,"okAm"),accNoon30=calcAcc(n30,"okNoon"),accPm30=calcAcc(n30,"okPm");
 const card=(label,v7,v30,sub7,sub30)=>`<div class="card hsc"><div class="hsl">${label}</div><div class="hsv">${v7!==null?v7+"%":"N/A"}</div><div class="hss">7天|${sub7}筆</div><div style="font-size:11px;color:var(--bll);margin-top:2px">${v30!==null?v30+"%":"N/A"}</div><div class="hss">30天|${sub30}筆</div></div>`;
-hs.innerHTML=card("全天準確",accFull7,accFull30,n7.filter(r=>r.okFull!==undefined).length,n30.filter(r=>r.okFull!==undefined).length)+card("上午準確",accAm7,accAm30,n7.filter(r=>r.okAm!==undefined).length,n30.filter(r=>r.okAm!==undefined).length)+card("下午準確",accPm7,accPm30,n7.filter(r=>r.okPm!==undefined).length,n30.filter(r=>r.okPm!==undefined).length);
+hs.innerHTML=card("全天準確",accFull7,accFull30,n7.filter(r=>r.okFull!==undefined).length,n30.filter(r=>r.okFull!==undefined).length)+card("上午準確",accAm7,accAm30,n7.filter(r=>r.okAm!==undefined).length,n30.filter(r=>r.okAm!==undefined).length)+card("中午準確",accNoon7,accNoon30,n7.filter(r=>r.okNoon!==undefined).length,n30.filter(r=>r.okNoon!==undefined).length)+card("下午準確",accPm7,accPm30,n7.filter(r=>r.okPm!==undefined).length,n30.filter(r=>r.okPm!==undefined).length);
 }
 const tb=document.getElementById("histTb");if(!tb)return;
-if(!S.history.length){tb.innerHTML=`<tr><td colspan="6" style="text-align:center;padding:28px;color:var(--mu)">在 AI 分析頁按「💾 儲存記錄」</td></tr>`;return;}
+if(!S.history.length){tb.innerHTML=`<tr><td colspan="7" style="text-align:center;padding:28px;color:var(--mu)">在 AI 分析頁按「💾 儲存記錄」</td></tr>`;return;}
 tb.innerHTML=S.history.map((rec,i)=>{
 const r=rk(rec.score);
-const amOpts=["無雨","有雨"].map(v=>`<option value="${v}"${rec.amActual===v?" selected":""}>${v}</option>`).join("");
-const pmOpts=["無雨","有雨"].map(v=>`<option value="${v}"${rec.pmActual===v?" selected":""}>${v}</option>`).join("");
-const accBadge=()=>{if(rec.okAm===undefined&&rec.okPm===undefined)return '<span style="color:var(--mu);font-size:10px">待驗證</span>';const parts=[];if(rec.okAm!==undefined)parts.push(`上午${rec.okAm==="ok"?'✅':'❌'}`);if(rec.okPm!==undefined)parts.push(`下午${rec.okPm==="ok"?'✅':'❌'}`);return parts.join(' ');};
+const mkOpts=(actual)=>["無雨","有雨"].map(v=>`<option value="${v}"${actual===v?" selected":""}>${v}</option>`).join("");
+const accBadge=()=>{
+const parts=[];
+if(rec.okAm!==undefined)parts.push(`上午${rec.okAm==="ok"?"✅":"❌"}`);
+if(rec.okNoon!==undefined)parts.push(`中午${rec.okNoon==="ok"?"✅":"❌"}`);
+if(rec.okPm!==undefined)parts.push(`下午${rec.okPm==="ok"?"✅":"❌"}`);
+return parts.length?parts.join(" "):'<span style="color:var(--mu);font-size:10px">待驗證</span>';
+};
 return`<tr>
 <td>${rec.date}</td>
 <td style="color:${r.c};font-weight:700">${rec.score}</td>
 <td><span style="background:${r.c}22;color:${r.c};padding:2px 7px;border-radius:4px;font-size:10px">${rec.label}</span></td>
-<td><select style="width:70px;padding:3px 4px;font-size:11px" onchange="verH(${i},'am',this.value)"><option value="">──</option>${amOpts}</select><div style="font-size:9px;color:var(--mu);margin-top:2px">AI預測:${rec.amPred||'?'}</div></td>
-<td><select style="width:70px;padding:3px 4px;font-size:11px" onchange="verH(${i},'pm',this.value)"><option value="">──</option>${pmOpts}</select><div style="font-size:9px;color:var(--mu);margin-top:2px">AI預測:${rec.pmPred||'?'}</div></td>
-<td style="font-size:11px">${accBadge()}</td>
+<td><select style="width:70px;padding:3px 4px;font-size:11px" onchange="verH(${i},'am',this.value)"><option value="">──</option>${mkOpts(rec.amActual)}</select><div style="font-size:9px;color:var(--mu);margin-top:2px">AI:${rec.amPred||"?"}</div></td>
+<td><select style="width:70px;padding:3px 4px;font-size:11px" onchange="verH(${i},'noon',this.value)"><option value="">──</option>${mkOpts(rec.noonActual)}</select><div style="font-size:9px;color:var(--mu);margin-top:2px">AI:${rec.noonPred||"?"}</div></td>
+<td><select style="width:70px;padding:3px 4px;font-size:11px" onchange="verH(${i},'pm',this.value)"><option value="">──</option>${mkOpts(rec.pmActual)}</select><div style="font-size:9px;color:var(--mu);margin-top:2px">AI:${rec.pmPred||"?"}</div></td>
+<td style="font-size:11px;white-space:nowrap">${accBadge()}</td>
 </tr>`;
 }).join("");
 }function verH(i,period,actual){
@@ -769,37 +775,28 @@ const rec=S.history[i];
 if(!actual)return;
 const wasRain=(v)=>v==="有雨";
 const aiRain=(score)=>score>=50;
-if(period==="am"){
-rec.amActual=actual;
-rec.okAm=rec.amScore!==undefined?(aiRain(rec.amScore)===wasRain(actual)?"ok":"miss"):undefined;
-}else if(period==="pm"){
-rec.pmActual=actual;
-rec.okPm=rec.pmScore!==undefined?(aiRain(rec.pmScore)===wasRain(actual)?"ok":"miss"):undefined;
-}
-if(rec.okAm!==undefined&&rec.okPm!==undefined){
-rec.okFull=rec.okAm==="ok"&&rec.okPm==="ok"?"ok":"miss";
-}else{
-rec.okFull=undefined;
-}
+if(period==="am"){rec.amActual=actual;rec.okAm=rec.amScore!==undefined?(aiRain(rec.amScore)===wasRain(actual)?"ok":"miss"):undefined;}
+else if(period==="noon"){rec.noonActual=actual;rec.okNoon=rec.noonScore!==undefined?(aiRain(rec.noonScore)===wasRain(actual)?"ok":"miss"):undefined;}
+else if(period==="pm"){rec.pmActual=actual;rec.okPm=rec.pmScore!==undefined?(aiRain(rec.pmScore)===wasRain(actual)?"ok":"miss"):undefined;}
+const allDone=[rec.okAm,rec.okNoon,rec.okPm].filter(v=>v!==undefined);
+rec.okFull=allDone.length===3?(allDone.every(v=>v==="ok")?"ok":"miss"):undefined;
 saveS();renderHistory();
 }
 function saveHist(){
 const dk=dateKey(0);const sc=S.aiResult?S.aiResult.overallRisk:dayAvg(dk);const r=rk(sc);
-const SLOTS_AM=["09:30","10:00","11:00","12:00"];
-const SLOTS_PM=["13:00","14:00","15:00","16:00","17:00","18:00","18:30"];
+const SLOTS_AM=["09:30","10:00","11:00"];
+const SLOTS_NOON=["12:00","13:00"];
+const SLOTS_PM=["14:00","15:00","16:00","17:00","18:00","18:30"];
 const ai=S.aiResult;
 const aiMap={};(ai?.hourly||[]).forEach(h=>aiMap[h.slot]=h);
-const amScore=Math.max(...SLOTS_AM.map(s=>aiMap[s]?.risk??calcAll(getSlot(dk,s)).total));
-const pmScore=Math.max(...SLOTS_PM.map(s=>aiMap[s]?.risk??calcAll(getSlot(dk,s)).total));
-const weatherRank={"無雨":0,"毛毛雨":1,"小雨":2,"中雨":3,"大雨":4};
-const amWeathers=SLOTS_AM.map(s=>getSlot(dk,s).siteWeather||"無雨");
-const pmWeathers=SLOTS_PM.map(s=>getSlot(dk,s).siteWeather||"無雨");
-const worstWeather=(arr)=>arr.reduce((a,b)=>(weatherRank[b]??0)>(weatherRank[a]??0)?b:a,"無雨");
-const amWeather=worstWeather(amWeathers);
-const pmWeather=worstWeather(pmWeathers);
+const peakScore=(slots)=>Math.max(...slots.map(s=>aiMap[s]?.risk??calcAll(getSlot(dk,s)).total));
+const amScore=peakScore(SLOTS_AM);
+const noonScore=peakScore(SLOTS_NOON);
+const pmScore=peakScore(SLOTS_PM);
 const amPred=amScore>=50?"有雨":"無雨";
+const noonPred=noonScore>=50?"有雨":"無雨";
 const pmPred=pmScore>=50?"有雨":"無雨";
-S.history.unshift({date:new Date().toLocaleDateString("zh-TW"),score:sc,label:r.l,amScore,pmScore,amPred,pmPred,amWeather,pmWeather,okAm:undefined,okPm:undefined,okFull:undefined});
+S.history.unshift({date:new Date().toLocaleDateString("zh-TW"),score:sc,label:r.l,amScore,noonScore,pmScore,amPred,noonPred,pmPred,okAm:undefined,okNoon:undefined,okPm:undefined,okFull:undefined});
 S.history=S.history.slice(0,90);saveS();renderHistory();toast("💾 記錄已儲存");
 }
 
