@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+h<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
@@ -610,7 +610,7 @@ el.innerHTML=`<div style="padding:16px"><div style="font-size:10px;color:${r.c};
 return;
 }
 el.style.background=r.bg;el.style.borderColor=r.bc;
-const staffHtml=(ai.staff||[]).map((t,i)=>{const roles=["🖥 櫃台","🏁 外場","🔧 技修","👨‍💼 店長"];return`<div class="ai-staff" style="border-left-color:${r.c}"><b>${roles[i]||""}：</b>${t}</div>`;}).join("");
+const staffArr=Array.isArray(ai.staff)?ai.staff:Object.values(ai.staff||{});const staffHtml=staffArr.map((t,i)=>{const roles=["🖥 櫃台","🏁 外場","🔧 技修","👨‍💼 店長"];return`<div class="ai-staff" style="border-left-color:${r.c}"><b>${roles[i]||""}：</b>${t}</div>`;}).join("");
 const ncdrBanner=isToday&&S.ncdrWarnLv>0?`<div style="background:rgba(249,115,22,.12);border:1px solid #f97316;border-radius:8px;padding:8px 12px;margin-bottom:10px;font-size:12px;color:#f97316;font-weight:700">⚡ NCDR 短延時強降雨預警 Lv${S.ncdrWarnLv}（新屋/觀音區）</div>`:"";
 const cityBanner=isToday&&S.ncdrCityWarn>0?`<div style="background:rgba(218,54,51,.12);border:1px solid #da3633;border-radius:8px;padding:8px 12px;margin-bottom:10px;font-size:12px;color:#da3633;font-weight:700">🚨 桃園市豪雨特報（等級 ${S.ncdrCityWarn}）</div>`:"";
 const analysisTime=S.aiResultTimes&&S.aiResultTimes[dayOffset]?new Date(S.aiResultTimes[dayOffset]).toLocaleTimeString("zh-TW"):(S.lastAt?new Date(S.lastAt).toLocaleTimeString("zh-TW"):"");
@@ -755,7 +755,7 @@ S.history=S.history.slice(0,90);saveS();renderHistory();toast("💾 記錄已儲
 function makeNotice(){
 const ai=S.aiResult;const dk=dateKey(0);const sc=ai?ai.overallRisk:dayAvg(dk);const r=rk(sc);
 const at=S.lastAt?new Date(S.lastAt).toLocaleTimeString("zh-TW"):"未取得";
-const dec=ai?.decisions||{ops:"-",t4:"-",cup:"-"};const staff=ai?.staff||["-","-","-","-"];
+const dec=ai?.decisions||{ops:"-",t4:"-",cup:"-"};const staffRaw=ai?.staff;const staff=Array.isArray(staffRaw)?staffRaw:(staffRaw&&typeof staffRaw==="object"?Object.values(staffRaw):["-","-","-","-"]);
 const ncdrLine=S.ncdrWarnLv>0?`⚡ NCDR 短延時預警：Lv${S.ncdrWarnLv}\n`:"";
 const cityLine=S.ncdrCityWarn>0?`🚨 桃園市豪雨特報（等級${S.ncdrCityWarn}）\n`:"";
 const txt=`【永安卡丁車｜今日 AI 雨勢風險評估】${new Date().toLocaleDateString("zh-TW")}
