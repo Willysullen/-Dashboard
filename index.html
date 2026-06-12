@@ -166,6 +166,7 @@ td{padding:8px;border-bottom:1px solid #161b22;color:var(--su);}
 <button class="ab" style="background:#8b5cf6" onclick="makeNotice()">📢 產生公告</button>
 <button class="ab" style="background:#238636" onclick="saveHist()">💾 儲存記錄</button>
 <button class="ab" style="background:#da3633" onclick="clearToday()">🗑️ 清空今天</button>
+<button class="ab" style="background:#0e7490" onclick="makeJarvis()">🤖 複製給永安賈維斯</button>
 </div>
 <div class="card">
 <div class="ct">系統日誌</div>
@@ -670,8 +671,8 @@ const ai0=S.aiResults[0]||S.aiResult;
 const ai1=S.aiResults[1];
 const ai2=S.aiResults[2];
 items=[
-{label:"明天",text:ai0?.tomorrow||ai1?(ai1?`AI：${ai1.summary?.substring(0,30)}...`:null)||null:null,fallback:`平均風險 ${dayAvg(dateKey(1))}`},
-{label:"後天",text:ai0?.dayAfter||ai2?(ai2?`AI：${ai2.summary?.substring(0,30)}...`:null)||null:null,fallback:`平均風險 ${dayAvg(dateKey(2))}`}
+{label:"明天",text:ai0?.tomorrow||(ai1?`AI：${ai1.summary}`:null),fallback:`平均風險 ${dayAvg(dateKey(1))}`},
+{label:"後天",text:ai0?.dayAfter||(ai2?`AI：${ai2.summary}`:null),fallback:`平均風險 ${dayAvg(dateKey(2))}`}
 ];
 }else if(dayOffset===1){
 const ai1=S.aiResults[1];
@@ -836,6 +837,71 @@ ${ai?.peakRisk?"⚡ "+ai.peakRisk:""}
 document.getElementById("noticeEmpty").classList.add("hid");
 const ta=document.getElementById("nta");ta.classList.remove("hid");ta.value=txt;
 showTab("notice",document.querySelector(".tb:nth-child(5)"));
+}
+function makeJarvis(){
+const ai=S.aiResult;const dk=dateKey(0);const sc=ai?ai.overallRisk:dayAvg(dk);const r=rk(sc);
+const at=S.lastAt?new Date(S.lastAt).toLocaleTimeString("zh-TW"):"未取得";
+const today=new Date().toLocaleDateString("zh-TW",{year:"numeric",month:"2-digit",day:"2-digit"});
+const dec=ai?.decisions||{ops:"-",t4:"-",cup:"-"};
+const staffRaw=ai?.staff;const staff=Array.isArray(staffRaw)?staffRaw:(staffRaw&&typeof staffRaw==="object"?Object.values(staffRaw):["-","-","-","-"]);
+const aiMap={};(ai?.hourly||[]).forEach(h=>aiMap[h.slot]=h);
+const SLOTS_AM_LIST=["09:30","10:00","11:00"];
+const SLOTS_NOON_LIST=["12:00","13:00"];
+const SLOTS_PM_LIST=["14:00","15:00","16:00","17:00"];
+const SLOTS_EVE_LIST=["18:00","18:30"];
+const peakRisk=(slots)=>Math.max(...slots.map(s=>aiMap[s]?.risk??calcAll(getSlot(dk,s)).total));
+const slotLabel=(score)=>{const rv=rk(score);return score+"（"+rv.l+"）";};
+const amScore=peakRisk(SLOTS_AM_LIST);
+const noonScore=peakRisk(SLOTS_NOON_LIST);
+const pmScore=peakRisk(SLOTS_PM_LIST);
+const eveScore=peakRisk(SLOTS_EVE_LIST);
+const canRunSlots=SLOTS.filter(s=>{const v=aiMap[s]?.canRun||getSlot(dk,s).canRun||"可";return v==="可"||v==="勉強可";});
+const noRunSlots=SLOTS.filter(s=>{const v=aiMap[s]?.canRun||getSlot(dk,s).canRun||"可";return v==="不建議"||v==="暫停";});
+let mode;
+if(sc<=29)mode="☀️ 晴天正常營業";
+else if(sc<=49)mode="🌤 低客流營業";
+else if(sc<=69)mode="🌧 雨備內勤模式";
+else mode="⛔ 暫停戶外營運建議";
+const ncdrLine=S.ncdrWarnLv>0?`⚡ NCDR 短延時預警 Lv${S.ncdrWarnLv}（新屋/觀音區）\n`:"";
+const cityLine=S.ncdrCityWarn>0?`🚨 桃園市豪雨特報（等級${S.ncdrCityWarn}）\n`:"";
+const rainNote=ai?.keyWarning||ai?.peakRisk||ai?.summary||"（無重大降雨警示）";
+const tmrNote=(S.aiResults&&S.aiResults[1]&&S.aiResults[1].summary)||(ai?.tomorrow)||"待取得";
+const daNote=(S.aiResults&&S.aiResults[2]&&S.aiResults[2].summary)||(ai?.dayAfter)||"待取得";
+const txt=`【永安 Rain AI 回報】
+日期：${today}
+地點：永安卡丁賽車場 / 新屋
+
+今日營運模式：
+${mode}
+
+上午風險（09:30–11:00）：${slotLabel(amScore)}
+中午風險（12:00–13:00）：${slotLabel(noonScore)}
+下午風險（14:00–17:00）：${slotLabel(pmScore)}
+傍晚風險（18:00–18:30）：${slotLabel(eveScore)}
+
+降雨重點：${ncdrLine}${cityLine}${rainNote}
+可營業時段：${canRunSlots.length?`${canRunSlots[0]}–${canRunSlots[canRunSlots.length-1]}`:"全天謹慎評估"}
+不建議開放時段：${noRunSlots.length?noRunSlots.join("、"):"無（全時段可跑）"}
+
+今日建議：${ai?.summary||"（AI 分析未取得）"}
+Willy：${staff[3]||"-"}
+櫃台：${staff[0]||"-"}
+場務：${staff[1]||"-"}
+技師：${staff[2]||"-"}
+
+需要切換模式的條件：
+・雨停多久可恢復戶外營運：現場地面由濕轉微濕（約 15–30 分鐘無雨），確認積水消退後可恢復。
+・雷達回波增強時是否暫停：NCDR 預警升至 Lv2 以上或現場觀測雨勢達中雨，立即暫停戶外活動。
+・現場地面積水時是否停止：確認積水無法快速排除時，停止所有戶外賽車活動。
+
+注意：
+AI 分析時間：${at}
+資料來源：Open-Meteo ECMWF・GFS・JMA・NCDR 即時預警
+明天展望：${tmrNote}
+後天展望：${daNote}`;
+navigator.clipboard.writeText(txt).then(()=>{toast("🤖 已複製給永安賈維斯！");}).catch(()=>{
+const ta=document.createElement("textarea");ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand("copy");document.body.removeChild(ta);toast("🤖 已複製給永安賈維斯！");
+});
 }
 function copyNotice(){
 const ta=document.getElementById("nta");
