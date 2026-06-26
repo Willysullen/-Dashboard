@@ -525,7 +525,7 @@ ${isToday&&S.satUrl&&!satBase64?`【衛星圖 URL】${S.satUrl}`:""}
 請根據以上所有資料進行專業分析，針對${dayLabelStr}（${targetDateStr}）的天氣狀況給出評估。
 ${!isToday?"注意：這是預報資料，請在分析中說明預測的不確定性。":""}
 只輸出以下 JSON，不要任何其他文字或 markdown：
-{"summary":"給店長看的2-3句話：${dayLabelStr}天氣概況與最重要注意事項","overallRisk":0-100整數,"riskLevel":"正常/觀察/準備雨天/高風險/暫停延後","confidence":0-100整數,"trend":"⬆️上升/⬇️下降/➡️持平","keyWarning":"最重要一句警告（或空字串）","radarInsight":"${isToday?"雷達回波分析":"數值模型一致性分析"}","modelConsensus":"4個模型共識${isToday?"與NCDR預警":"（預報）"}綜合分析","hourly":[{"slot":"09:30","risk":整數,"canRun":"可/勉強可/不建議/暫停","note":"簡短說明"},...],"decisions":{"ops":"${dayLabelStr}營業車建議","t4":"T4練習建議","cup":"永安盃建議"},"staff":["櫃台具體任務","外場具體任務","技修具體任務","店長備注"],"peakRisk":"最高風險時段說明","tomorrow":"${dayOffset===0?"明天一句話":dayOffset===1?"後天一句話":"更後天/未來天氣一句話"}","dayAfter":"${dayOffset===0?"後天一句話":"更後天天氣一句話"}"}`;
+{"summary":"給店長看的2-3句話：${dayLabelStr}天氣概況與最重要注意事項","overallRisk":0-100整數,"riskLevel":"正常/觀察/準備雨天/高風險/暫停延後","confidence":0-100整數,"trend":"⬆️上升/⬇️下降/➡️持平","keyWarning":"最重要一句警告（或空字串）","radarInsight":"${isToday?"雷達回波分析":"數值模型一致性分析"}","modelConsensus":"4個模型共識${isToday?"與NCDR預警":"（預報）"}綜合分析","hourly":[{"slot":"09:30","risk":整數,"canRun":"可/勉強可/不建議/暫停","note":"簡短說明"},...],"decisions":{"ops":"${dayLabelStr}營業車建議","t4":"競技車建議"},"staff":["櫃台具體任務","外場具體任務","技修具體任務","店長備注"],"peakRisk":"最高風險時段說明","tomorrow":"${dayOffset===0?"明天一句話":dayOffset===1?"後天一句話":"更後天/未來天氣一句話"}","dayAfter":"${dayOffset===0?"後天一句話":"更後天天氣一句話"}"}`;
 }
 
 async function runAI(){
@@ -630,8 +630,8 @@ ${ai.keyWarning?`<div class="ai-warning" style="background:${r.bg};border-color:
 <div class="ai-section-title">📋 決策</div>
 <div class="ai-go-grid">
 <div class="ai-go"><div class="ai-go-icon">🚗</div><div class="ai-go-name">營業車</div><div class="ai-go-val" style="color:${r.c}">${ai.decisions?.ops||"-"}</div></div>
-<div class="ai-go"><div class="ai-go-icon">🏎</div><div class="ai-go-name">T4 練習</div><div class="ai-go-val" style="color:${r.c}">${ai.decisions?.t4||"-"}</div></div>
-<div class="ai-go"><div class="ai-go-icon">🏆</div><div class="ai-go-name">永安盃</div><div class="ai-go-val" style="color:${r.c}">${ai.decisions?.cup||"-"}</div></div>
+<div class="ai-go"><div class="ai-go-icon">🏎</div><div class="ai-go-name">競技車</div><div class="ai-go-val" style="color:${r.c}">${ai.decisions?.t4||"-"}</div></div>
+
 </div>
 ${ai.radarInsight||ai.modelConsensus?`<div class="ai-section-title">🔬 AI 推斷依據</div>${ai.radarInsight?`<div class="ai-insight">📡 ${ai.radarInsight}</div>`:""}${ai.modelConsensus?`<div class="ai-insight">📊 ${ai.modelConsensus}</div>`:""}${ai.peakRisk?`<div class="ai-insight">⚡ ${ai.peakRisk}</div>`:""}`:""}
 <div class="ai-section-title">👥 員工安排</div>
@@ -804,7 +804,7 @@ S.history=S.history.slice(0,90);saveS();renderHistory();toast("💾 記錄已儲
 function makeNotice(){
 const ai=S.aiResult;const dk=dateKey(0);const sc=ai?ai.overallRisk:dayAvg(dk);const r=rk(sc);
 const at=S.lastAt?new Date(S.lastAt).toLocaleTimeString("zh-TW"):"未取得";
-const dec=ai?.decisions||{ops:"-",t4:"-",cup:"-"};const staffRaw=ai?.staff;const staff=Array.isArray(staffRaw)?staffRaw:(staffRaw&&typeof staffRaw==="object"?Object.values(staffRaw):["-","-","-","-"]);
+const dec=ai?.decisions||{ops:"-",t4:"-"};const staffRaw=ai?.staff;const staff=Array.isArray(staffRaw)?staffRaw:(staffRaw&&typeof staffRaw==="object"?Object.values(staffRaw):["-","-","-","-"]);
 const ncdrLine=S.ncdrWarnLv>0?`⚡ NCDR 短延時預警：Lv${S.ncdrWarnLv}\n`:"";
 const cityLine=S.ncdrCityWarn>0?`🚨 桃園市豪雨特報（等級${S.ncdrCityWarn}）\n`:"";
 const txt=`【永安卡丁車｜今日 AI 雨勢風險評估】${new Date().toLocaleDateString("zh-TW")}
@@ -828,8 +828,7 @@ ${ai?.keyWarning?"⚠️ "+ai.keyWarning:""}
 ════════════════
 
 🚗 營業車：${dec.ops}
-🏎 T4 練習：${dec.t4}
-🏆 永安盃：${dec.cup}
+🏎 競技車：${dec.t4}
 
 ${ai?.peakRisk?"⚡ "+ai.peakRisk:""}
 
@@ -842,7 +841,7 @@ function makeJarvis(){
 const ai=S.aiResult;const dk=dateKey(0);const sc=ai?ai.overallRisk:dayAvg(dk);const r=rk(sc);
 const at=S.lastAt?new Date(S.lastAt).toLocaleTimeString("zh-TW"):"未取得";
 const today=new Date().toLocaleDateString("zh-TW",{year:"numeric",month:"2-digit",day:"2-digit"});
-const dec=ai?.decisions||{ops:"-",t4:"-",cup:"-"};
+const dec=ai?.decisions||{ops:"-",t4:"-"};
 const staffRaw=ai?.staff;const staff=Array.isArray(staffRaw)?staffRaw:(staffRaw&&typeof staffRaw==="object"?Object.values(staffRaw):["-","-","-","-"]);
 const aiMap={};(ai?.hourly||[]).forEach(h=>aiMap[h.slot]=h);
 const SLOTS_AM_LIST=["09:30","10:00","11:00"];
